@@ -9,7 +9,7 @@
     <ProjectGuid>{063AE168-639D-4738-8207-2BAA71FFE2B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Confidential_Eternal_Pottery.Tests</RootNamespace>
+    <RootNamespace>ConfidentialEternalPottery.Tests</RootNamespace>
     <AssemblyName>Confidential-Eternal-Pottery.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

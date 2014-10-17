@@ -8,10 +8,10 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using Confidential_Eternal_Pottery.Filters;
-using Confidential_Eternal_Pottery.Models;
+using ConfidentialEternalPottery.Filters;
+using ConfidentialEternalPottery.Models;
 
-namespace Confidential_Eternal_Pottery.Controllers
+namespace ConfidentialEternalPottery.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]

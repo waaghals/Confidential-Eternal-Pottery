@@ -4,9 +4,9 @@ using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
-using Confidential_Eternal_Pottery.Models;
+using ConfidentialEternalPottery.Models;
 
-namespace Confidential_Eternal_Pottery.Filters
+namespace ConfidentialEternalPottery.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute

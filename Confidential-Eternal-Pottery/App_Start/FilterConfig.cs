@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Confidential_Eternal_Pottery
+namespace ConfidentialEternalPottery
 {
     public class FilterConfig
     {

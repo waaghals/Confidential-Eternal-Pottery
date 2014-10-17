@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Confidential_Eternal_Pottery
+namespace ConfidentialEternalPottery
 {
     public class BundleConfig
     {

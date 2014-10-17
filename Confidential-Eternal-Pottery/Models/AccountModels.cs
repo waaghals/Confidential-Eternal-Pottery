@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Web.Security;
 
-namespace Confidential_Eternal_Pottery.Models
+namespace ConfidentialEternalPottery.Models
 {
     public class UsersContext : DbContext
     {

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Confidential_Eternal_Pottery;
-using Confidential_Eternal_Pottery.Controllers;
+using ConfidentialEternalPottery;
+using ConfidentialEternalPottery.Controllers;
 
-namespace Confidential_Eternal_Pottery.Tests.Controllers
+namespace ConfidentialEternalPottery.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

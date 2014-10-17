@@ -7,8 +7,6 @@ using System.Web.Mvc;
 
 namespace ConfidentialEternalPottery.Controllers
 {
-    [Authorize]
-    [InitializeSimpleMembership]
     public class HomeController : Controller
     {
         public ActionResult Index()

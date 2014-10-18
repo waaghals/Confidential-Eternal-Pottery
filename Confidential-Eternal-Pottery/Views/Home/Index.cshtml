@@ -19,6 +19,13 @@
     </section>
 }
 <h3>We suggest the following:</h3>
+@{
+    foreach (var item in ViewBag.Model)
+    {
+        <h2>@item.Number</h2>
+    }
+}
+
 <ol class="round">
     <li class="one">
         <h5>Getting Started</h5>

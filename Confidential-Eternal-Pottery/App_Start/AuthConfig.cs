@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
-using Confidential_Eternal_Pottery.Models;
+using ConfidentialEternalPottery.Models;
 
-namespace Confidential_Eternal_Pottery
+namespace ConfidentialEternalPottery
 {
     public static class AuthConfig
     {

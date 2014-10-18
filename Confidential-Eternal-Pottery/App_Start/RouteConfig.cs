@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Confidential_Eternal_Pottery
+namespace ConfidentialEternalPottery
 {
     public class RouteConfig
     {

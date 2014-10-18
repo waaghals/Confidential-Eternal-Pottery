@@ -1,0 +1,59 @@
+﻿@{
+    List<ConfidentialEternalPottery.Models.Room> allRooms = (List<ConfidentialEternalPottery.Models.Room>)ViewBag.Rooms;
+    ViewBag.Title = "RoomOverview";
+}
+
+<h2>Overview</h2>
+
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+</style>
+
+<table class="tg">
+    <tr>
+        <th class="tg-031e">Number</th>
+        <th class="tg-031e">Capacity</th>
+        <th class="tg-031e">MinimumPrice</th>
+        <th class="tg-031e">CustomPrices</th>
+        <th class="tg-031e"></th>
+        <th class="tg-031e"></th>
+    </tr>
+
+    @{
+        foreach (var item in allRooms)
+        {
+            <tr>
+                <td class="tg-031e">@item.Number</td>
+                <td class="tg-031e">@item.Capacity</td>
+                <td class="tg-031e">@item.MinimumPrice</td>
+                <td class="tg-031e"></td>
+                <td class="tg-031e"><button onclick="location.href='@Url.Action("Delete", "Room", new { RoomId = @item.RoomId })'" style="color: grey;">Update</button></td>
+                <td class="tg-031e"><button onclick="location.href=''" style="color: grey;">Delete</button></td>
+            </tr>
+        }
+    }
+</table>

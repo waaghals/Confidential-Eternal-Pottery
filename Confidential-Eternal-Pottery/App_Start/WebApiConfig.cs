@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Confidential_Eternal_Pottery
+namespace ConfidentialEternalPottery
 {
     public static class WebApiConfig
     {

@@ -18,20 +18,28 @@ namespace ConfidentialEternalPottery.Repositories
             context = hotelContext;
         }
 
+        List<Room> IFindAllRepository<Room>.FindAll(Room entity)
+        {
+            return context.Rooms.ToList<Room>();
+        }
+
         Room IRoomRepository.findByNumber(int number)
         {
-            throw new NotImplementedException();
+            return context.Rooms.Where(room => room.Number == number).FirstOrDefault();
         }
 
         Room ICreateRepository<Room>.Create(Room entity)
         {
-            return context.Rooms.Add(entity);
+            var room = context.Rooms.Add(entity);
+            context.SaveChanges();
+            return room;
         }
 
         Room IUpdateRepository<Room>.Update(Room entity)
         {
             context.Rooms.Attach(entity);
             context.Entry<Room>(entity).State = EntityState.Modified;
+            context.SaveChanges();
 
             return entity;
         }
@@ -39,6 +47,21 @@ namespace ConfidentialEternalPottery.Repositories
         void IDeleteRepository<Room>.Delete(Room entity)
         {
             context.Rooms.Remove(entity);
+        }
+
+        public void DeleteById(int roomId)
+        {
+            var entity = context.Rooms.Where(room => room.RoomId == roomId).FirstOrDefault();
+            if (entity != null)
+            {
+                context.Rooms.Remove(entity);
+                context.SaveChanges();
+            }
+        }
+
+        public Room FindById(int Id)
+        {
+            return context.Rooms.Find(Id);
         }
     }
 }

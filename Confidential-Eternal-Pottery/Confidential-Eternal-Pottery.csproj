@@ -186,6 +186,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DBSet.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,6 +199,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Capacity.cs" />
     <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\HotelContext.cs" />
     <Compile Include="Models\Guest.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BookingRepository.cs" />
+    <Compile Include="Repositories\IFindByIdRepository.cs" />
     <Compile Include="Repositories\IFindAllRepository.cs" />
     <Compile Include="Repositories\IDeleteRepository.cs" />
     <Compile Include="Repositories\IBookingRepository.cs" />
@@ -324,6 +327,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Room\Delete.cshtml" />
+    <Content Include="Views\Room\Index.cshtml" />
+    <Content Include="Views\Room\Update.cshtml" />
+    <Content Include="Views\Room\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

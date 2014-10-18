@@ -16,15 +16,48 @@ namespace ConfidentialEternalPottery.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Rooms = roomRepo.getAll();
+            ViewBag.Rooms = roomRepo.FindAll(null);
+            return View();
+        }
+
+        public ActionResult Delete(int roomId)
+        {
+            roomRepo.DeleteById(roomId);
+            return RedirectToAction("Index", "Room");
+        }
+        public ActionResult Update(int roomId)
+        {
+
+            ViewBag.Model = roomRepo.FindById(roomId);
+            return View();
+        }
+
+        public ActionResult Create()
+        {
             return View();
         }
         [HttpPost]
-        public ActionResult Delete(Room entity)
+        public ActionResult Create(Room entity)
         {
-            roomRepo.Delete(entity);
-            return View();
+            if (ModelState.IsValid)
+            {
+                roomRepo.Create(entity);
+                return RedirectToAction("Index", "Room");
+            }
+            return View(entity);
         }
+        [HttpPost]
+        public ActionResult Update(Room entity)
+        {
+            if (ModelState.IsValid)
+            {
+                roomRepo.Update(entity);
+                return RedirectToAction("Index", "Room");
+            }
+            ViewBag.Model = entity;
+            return View(entity);
+        }
+
 
     }
 }

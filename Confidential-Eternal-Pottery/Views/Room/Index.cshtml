@@ -51,9 +51,11 @@
                 <td class="tg-031e">@item.Capacity</td>
                 <td class="tg-031e">@item.MinimumPrice</td>
                 <td class="tg-031e"></td>
-                <td class="tg-031e"><button onclick="location.href='@Url.Action("Delete", "Room", new { RoomId = @item.RoomId })'" style="color: grey;">Update</button></td>
-                <td class="tg-031e"><button onclick="location.href=''" style="color: grey;">Delete</button></td>
+                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Update", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Update</button></td>
+                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Delete", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Delete</button></td>
             </tr>
         }
     }
 </table>
+
+<button onclick="location.href = '@Url.Action("Create", "Room")'" style="color: grey;">Add New</button>

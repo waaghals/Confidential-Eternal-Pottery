@@ -18,7 +18,7 @@ namespace ConfidentialEternalPottery.Controllers
             using (var db = new HotelContext())
             {
                 // Create and save a new Blog 
-                Room room = new Room() { Capacity = 3, Number = 20, MinimumPrice = (decimal) 100.00 };
+                Room room = new Room() { Capacity = 2, Number = 20, MinimumPrice = (decimal) 100.00 };
                 db.Rooms.Add(room);
                 room2 = db.Rooms.ToList<Room>();
                 ViewBag.Model = room2;

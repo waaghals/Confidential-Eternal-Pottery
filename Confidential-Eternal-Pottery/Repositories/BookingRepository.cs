@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using ConfidentialEternalPottery.Models;
+using System.Data.Entity;
 
 namespace ConfidentialEternalPottery.Repositories
 {

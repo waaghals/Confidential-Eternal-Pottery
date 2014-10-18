@@ -5,6 +5,7 @@ using System.Web;
 using ConfidentialEternalPottery.DomainModel.Repositories;
 using ConfidentialEternalPottery.Models;
 using System.Data;
+using System.Data.Entity;
 
 namespace ConfidentialEternalPottery.Repositories
 {

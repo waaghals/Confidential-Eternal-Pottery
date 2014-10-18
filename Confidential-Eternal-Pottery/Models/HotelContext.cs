@@ -8,6 +8,11 @@ namespace ConfidentialEternalPottery.Models
 {
     public class HotelContext : DbContext
     {
+        public HotelContext()
+            : base()
+        {
+            Database.SetInitializer<HotelContext>(null);
+        }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
     }

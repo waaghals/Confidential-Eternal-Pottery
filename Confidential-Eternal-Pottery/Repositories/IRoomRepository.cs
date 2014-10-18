@@ -11,5 +11,6 @@ namespace ConfidentialEternalPottery.Repositories
     {
         Room findByNumber(int number);
         void DeleteById(int roomId);
+        void RemovePriceMomentById(int priceMomentId, int roomId);
     }
 }

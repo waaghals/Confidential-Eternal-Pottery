@@ -1,0 +1,52 @@
+﻿@model ConfidentialEternalPottery.Models.PriceMoment
+
+@{
+    ViewBag.Title = "AddCustomPrice";
+}
+
+<h2>AddCustomPrice</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PriceMoment</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.From)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.From, new { type = "date" })
+            @Html.ValidationMessageFor(model => model.From)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.To)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.To, new { type = "date" })
+            @Html.ValidationMessageFor(model => model.To)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "PriceMoment", new { roomId = ViewBag.Model.RoomId }, null)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

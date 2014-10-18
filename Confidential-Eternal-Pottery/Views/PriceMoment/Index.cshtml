@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "CustomPricing";
+    ConfidentialEternalPottery.Models.Room room = (ConfidentialEternalPottery.Models.Room)ViewBag.Model;
+}
+
+<h2>CustomPricing Overview</h2>
+
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+</style>
+
+<table class="tg">
+    <tr>
+        <th class="tg-031e">From</th>
+        <th class="tg-031e">To</th>
+        <th class="tg-031e">Price</th>
+        <th class="tg-031e"></th>
+        <th class="tg-031e"></th>
+        <th class="tg-031e"></th>
+    </tr>
+    @{
+        foreach (var item in room.Prices)
+        {
+            <tr>
+                <td class="tg-031e">@item.From</td>
+                <td class="tg-031e">@item.To</td>
+                <td class="tg-031e">@item.Price</td>
+                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Index", "PriceMoment", new { roomId = @room.RoomId })'" style="color: grey;">Custom Pricing</button></td>
+                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Update", "PriceMoment", new { roomId = @room.RoomId })'" style="color: grey;">Update</button></td>
+                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Delete", "PriceMoment", new { priceMomentId = @item.PriceMomentId, roomId = @room.RoomId })'" style="color: grey;">Delete</button></td>
+            </tr>
+        }
+        if (room.Prices.Count == 0)
+        {
+            <h3>No custom prices yet</h3>
+        }
+    }
+</table>
+<button onclick="location.href = '@Url.Action("Create", "PriceMoment", new { roomId = @room.RoomId })'" style="color: grey;">Add New</button>
+<div>
+    @Html.ActionLink("Return to room", "Index", "Room", new { roomId = ViewBag.Model.RoomId }, null)
+</div>

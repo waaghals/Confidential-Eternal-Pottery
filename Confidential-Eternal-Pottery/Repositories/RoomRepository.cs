@@ -59,9 +59,24 @@ namespace ConfidentialEternalPottery.Repositories
             }
         }
 
-        public Room FindById(int Id)
+        Room IFindByIdRepository<Room>.FindById(int Id)
         {
-            return context.Rooms.Find(Id);
+            return context.Rooms.Where(room => room.RoomId == Id).FirstOrDefault();
+        }
+
+        public void RemovePriceMomentById(int priceMomentId, int roomId)
+        {
+            var entity = context.Rooms.Where(room => room.RoomId == roomId).FirstOrDefault();
+            if (entity != null)
+            {
+                var priceMoment = entity.Prices.Where(pm => pm.PriceMomentId == priceMomentId).FirstOrDefault();
+                if (priceMoment != null)
+                {
+                    entity.Prices.Remove(priceMoment);
+                    context.Entry<PriceMoment>(priceMoment).State = EntityState.Deleted;
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ namespace ConfidentialEternalPottery.Controllers
             roomRepo.DeleteById(roomId);
             return RedirectToAction("Index", "Room");
         }
+
         public ActionResult Update(int roomId)
         {
 
@@ -36,6 +37,7 @@ namespace ConfidentialEternalPottery.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Create(Room entity)
         {
@@ -46,6 +48,7 @@ namespace ConfidentialEternalPottery.Controllers
             }
             return View(entity);
         }
+
         [HttpPost]
         public ActionResult Update(Room entity)
         {

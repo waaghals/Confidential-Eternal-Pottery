@@ -17,8 +17,14 @@ namespace ConfidentialEternalPottery.Models
         public int RoomId { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }
+        [Required]
+
         public byte Capacity { get; set; }
+        [Required]
+
         public int Number { get; set; }
+        [Required]
+
         public decimal MinimumPrice { get; set; }
         public virtual ICollection<PriceMoment> Prices { get; set; }
 
@@ -43,15 +49,15 @@ namespace ConfidentialEternalPottery.Models
         {
             if (Number < 0 && Number > 999)
             {
-                yield return new ValidationResult("Number has to be between 0 and 1000", new [] { "Number" });
+                yield return new ValidationResult("Number has to be between 0 and 1000", new[] { "Number" });
             }
             if (MinimumPrice < 0)
             {
-                yield return new ValidationResult("MinimumPrice has to be positve.", new [] { "MiniumPrice" });
+                yield return new ValidationResult("MinimumPrice has to be positve.", new[] { "MiniumPrice" });
             }
             if (!(Capacity == 2 || Capacity == 3 || Capacity == 5))
             {
-                yield return new ValidationResult("Capacity can only be 2, 3 or 5.", new [] { "Capacity" });
+                yield return new ValidationResult("Capacity can only be 2, 3 or 5.", new[] { "Capacity" });
             }
         }
     }

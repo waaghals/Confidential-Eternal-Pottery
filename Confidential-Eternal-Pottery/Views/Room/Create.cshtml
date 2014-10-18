@@ -1,0 +1,30 @@
+﻿@model ConfidentialEternalPottery.Models.Room
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Room</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Number)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Number)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Capacity)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Number)
+        </div>
+
+        <input type="submit" value="Create new room" />
+    </fieldset>
+}
+

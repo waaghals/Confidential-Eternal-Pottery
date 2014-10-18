@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,8 @@ namespace ConfidentialEternalPottery.Models
             Bookings = new HashSet<Booking>();
             Prices = new HashSet<PriceMoment>();
         }
+        [Key]
+        public int RoomId { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }
         public byte Capacity { get; set; }

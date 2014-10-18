@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -12,6 +13,8 @@ namespace ConfidentialEternalPottery.Models
             Guests = new HashSet<Guest>();
         }
 
+        [Key]
+        public int BookingId { get; set; }
         public int RoomId { get; set; }
         public virtual Room Room { get; set; }
 

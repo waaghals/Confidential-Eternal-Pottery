@@ -12,8 +12,14 @@ namespace ConfidentialEternalPottery.Controllers
     {
         //
         // GET: /PriceMoment/
-        IRoomRepository roomRepo = new RoomRepository(new HotelContext());
-
+        IRoomRepository roomRepo;
+        IPriceMomentRepository priceMomentRepo;
+        public PriceMomentController()
+        {
+            HotelContext context = new HotelContext();
+            priceMomentRepo = new PriceMomentRepository(context);
+            roomRepo = new RoomRepository(context);
+        }
         public ActionResult Index(int roomId)
         {
             ViewBag.Model = roomRepo.FindById(roomId);
@@ -26,6 +32,15 @@ namespace ConfidentialEternalPottery.Controllers
             return RedirectToAction("Index", "PriceMoment", new { roomId = roomId });
         }
 
+        public ActionResult Update(int priceMomentId)
+        {
+            PriceMoment entity = priceMomentRepo.FindById(priceMomentId);
+            ViewBag.Model = entity;
+
+            // todo
+            return View(entity);
+        }
+
         public ActionResult Create(int roomId)
         {
             Room entity = roomRepo.FindById(roomId);
@@ -33,6 +48,21 @@ namespace ConfidentialEternalPottery.Controllers
             ViewBag.Model = entity;
             moment.Room = entity;
             return View(moment);
+        }
+
+        [HttpPost]
+        public ActionResult Update(PriceMoment entity)
+        {
+            if (ModelState.IsValid)
+            {
+                Room room = roomRepo.FindById(entity.RoomId);
+                roomRepo.Update(room);
+                entity.Room = room;
+                priceMomentRepo.Update(entity);
+                return RedirectToAction("Index", "PriceMoment", new { roomId = entity.RoomId});
+            }
+            ViewBag.Model = entity;
+            return View(entity);
         }
 
         [HttpPost]

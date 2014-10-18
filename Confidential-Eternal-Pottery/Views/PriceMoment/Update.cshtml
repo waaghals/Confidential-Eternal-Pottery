@@ -1,0 +1,55 @@
+﻿@model ConfidentialEternalPottery.Models.PriceMoment
+
+@{
+    ViewBag.Title = "Update";
+    ConfidentialEternalPottery.Models.PriceMoment priceMoment = (ConfidentialEternalPottery.Models.PriceMoment)ViewBag.Model;
+
+}
+
+<h2>Update</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PriceMoment</legend>
+        @Html.HiddenFor(model => model.RoomId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price, new { Value = priceMoment.Price })
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.From)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.From, new { Value = priceMoment.From, type = "date" })
+            @Html.ValidationMessageFor(model => model.From)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.To)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.To, new { type = "Date", Value = priceMoment.To })
+            @Html.ValidationMessageFor(model => model.To)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

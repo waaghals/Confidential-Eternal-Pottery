@@ -212,9 +212,11 @@
     <Compile Include="Repositories\IFindAllRepository.cs" />
     <Compile Include="Repositories\IDeleteRepository.cs" />
     <Compile Include="Repositories\IBookingRepository.cs" />
+    <Compile Include="Repositories\IPriceMomentRepository.cs" />
     <Compile Include="Repositories\IRoomRepository.cs" />
     <Compile Include="Repositories\IUpdateRepository.cs" />
     <Compile Include="Repositories\ICreateRepository.cs" />
+    <Compile Include="Repositories\PriceMomentRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -328,12 +330,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Room\Delete.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Room\Update.cshtml" />
     <Content Include="Views\Room\Create.cshtml" />
     <Content Include="Views\PriceMoment\Index.cshtml" />
     <Content Include="Views\PriceMoment\Create.cshtml" />
+    <Content Include="Views\PriceMoment\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

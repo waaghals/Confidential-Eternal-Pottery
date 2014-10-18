@@ -47,7 +47,7 @@ namespace ConfidentialEternalPottery.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (Number < 0 && Number > 999)
+            if (Number < 0 && Number > 255)
             {
                 yield return new ValidationResult("Number has to be between 0 and 1000", new[] { "Number" });
             }

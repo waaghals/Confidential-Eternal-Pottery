@@ -28,10 +28,11 @@ namespace ConfidentialEternalPottery.Models
         public decimal MinimumPrice { get; set; }
         public virtual ICollection<PriceMoment> Prices { get; set; }
 
+        public decimal Price { get { return CurrentPrice(); } }
         public decimal CurrentPrice()
         {
             // Find all pricemoments where their timewindow is around now.
-            DateTime now = new DateTime();
+            DateTime now = DateTime.Now;
             IEnumerable<PriceMoment> inRange = Prices.Where(m => m.From < now && m.To > now);
 
             // When no time windows around now where found return the minimum price

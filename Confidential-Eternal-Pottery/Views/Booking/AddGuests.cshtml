@@ -12,11 +12,22 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Room.RoomId)
+    @Html.HiddenFor(model => model.Room.Number)
+    @Html.HiddenFor(model => model.Price)
+    @Html.HiddenFor(model => model.From)
+    @Html.HiddenFor(model => model.To)
+    @Html.HiddenFor(model => model.Address.City)
+    @Html.HiddenFor(model => model.Address.Number)
+    @Html.HiddenFor(model => model.Address.Street)
+    @Html.HiddenFor(model => model.Address.Zip)
+    @Html.HiddenFor(model => model.Email)
 
     <fieldset>
         <legend>Guests</legend>
+
         @for (int i = 0; i < Model.NumGuest; i++)
         {
+            Model.Guests.Add(new ConfidentialEternalPottery.ViewModels.GuestModel());
             <div class="form-group">
                 @Html.LabelFor(m => m.Guests.ElementAt(i).FirstName, new { @class = "col-sm-2 control-label" })
 
@@ -53,6 +64,11 @@
             </div>
         }
     </fieldset>
+    <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-2 pull-right">
+                <button type="submit" class="btn btn-default">View booking</button>
+            </div>
+        </div>
 }
 
 <div>

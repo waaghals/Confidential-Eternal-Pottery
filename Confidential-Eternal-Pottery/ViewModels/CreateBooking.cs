@@ -29,15 +29,20 @@ namespace ConfidentialEternalPottery.ViewModels
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        public decimal Price { get; set; }
+        [Required]
+        public string BackAccount { get; set; }
 
         public Booking getBooking()
         {
             Booking booking = new Booking();
             booking.BillingAddress = Address.getAddress();
+            booking.BillingAddress.Booking = booking;
             booking.Email = Email;
             booking.From = From;
             booking.To = To;
             booking.Room = Room;
+            booking.Price = Room.CurrentPrice();
             
             foreach(GuestModel guest in Guests)
             {

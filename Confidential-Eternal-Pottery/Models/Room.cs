@@ -15,7 +15,6 @@ namespace ConfidentialEternalPottery.Models
         }
         [Key]
         public int RoomId { get; set; }
-
         public virtual ICollection<Booking> Bookings { get; set; }
         public byte Capacity { get; set; }
         public int Number { get; set; }
@@ -38,5 +37,6 @@ namespace ConfidentialEternalPottery.Models
             PriceMoment latest = inRange.OrderByDescending(m => m.To).First();
             return latest.Price;
         }
+
     }
 }

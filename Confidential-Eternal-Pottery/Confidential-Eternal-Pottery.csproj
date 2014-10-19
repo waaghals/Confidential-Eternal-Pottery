@@ -211,7 +211,6 @@
     <Compile Include="ViewModels\AddressModel.cs" />
     <Compile Include="ViewModels\CreateBooking.cs" />
     <Compile Include="ViewModels\GuestModel.cs" />
-    <Compile Include="ViewModels\RoomModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -327,10 +326,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\Booking\Details.cshtml" />
+    <Content Include="Views\Booking\View.cshtml" />
     <Content Include="Views\Booking\Edit.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
-    <Content Include="Views\Booking\BookRoom.cshtml" />
+    <Content Include="Views\Booking\SetDate.cshtml" />
+    <Content Include="Views\Booking\AddGuests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

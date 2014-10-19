@@ -16,5 +16,8 @@ namespace ConfidentialEternalPottery.Models
         }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<Guest> Guest { get; set; }
     }
 }

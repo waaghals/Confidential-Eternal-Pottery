@@ -40,7 +40,7 @@ namespace ConfidentialEternalPottery.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new CreateBooking() { Room = room });
+            return View(new CreateBooking() { Room = room, Price = room.CurrentPrice() });
             
         }
 
@@ -66,7 +66,14 @@ namespace ConfidentialEternalPottery.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Bookings.Add(booking.getBooking());
+                //Set the room from the room id
+                IRoomRepository repo = new RoomRepository(db);
+                Room room = repo.FindById(booking.Room.RoomId);
+                booking.Room = room;
+
+                IBookingRepository bookingRepo = new BookingRepository(db);
+                bookingRepo.Create(booking.getBooking());
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

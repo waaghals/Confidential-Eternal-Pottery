@@ -18,6 +18,7 @@
     @Html.HiddenFor(model => model.Address.Street)
     @Html.HiddenFor(model => model.Address.Zip)
     @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.Guests)
     <div class="row">
         <div class="col-sm-6">
             <fieldset>
@@ -108,11 +109,11 @@
         <legend>Confirmation</legend>
         <p>Please enter your back account number to confirm your booking.</p>
         <div class="form-group">
-            @Html.LabelFor(m => m.BackAccount, new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(m => m.BankAccount, new { @class = "col-sm-2 control-label" })
 
             <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.BackAccount, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.BackAccount)
+                @Html.TextBoxFor(m => m.BankAccount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.BankAccount)
             </div>
         </div>
     </fieldset>

@@ -31,7 +31,7 @@ namespace ConfidentialEternalPottery.ViewModels
         public string Email { get; set; }
         public decimal Price { get; set; }
         [Required]
-        public string BackAccount { get; set; }
+        public string BankAccount { get; set; }
 
         public Booking getBooking()
         {
@@ -46,7 +46,7 @@ namespace ConfidentialEternalPottery.ViewModels
             
             foreach(GuestModel guest in Guests)
             {
-                booking.Guests.Add(guest.getGuess());
+                booking.Guests.Add(guest.getGuest());
             }
 
             return booking;

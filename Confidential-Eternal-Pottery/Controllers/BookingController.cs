@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using ConfidentialEternalPottery.Models;
 using ConfidentialEternalPottery.ViewModels;
 using ConfidentialEternalPottery.Repositories;
+using System.Collections;
 
 namespace ConfidentialEternalPottery.Controllers
 {
@@ -36,48 +37,75 @@ namespace ConfidentialEternalPottery.Controllers
         {
             IRoomRepository repo = new RoomRepository(db);
             Room room = repo.FindById(id);
-            if(room == null)
+            if (room == null)
             {
                 return HttpNotFound();
             }
             return View(new CreateBooking() { Room = room, Price = room.CurrentPrice() });
-            
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddGuests(CreateBooking booking)
         {
+            Session["CurrentGuest"] = 0;
             Session["booking"] = booking;
-            return View(Session["booking"]);
+            GuestModel guest = new GuestModel();
+            return View(guest);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult View(CreateBooking booking)
+        public ActionResult AddGuest(GuestModel guest)
         {
+            CreateBooking booking = (CreateBooking)Session["booking"];
+            booking.Guests.Add(guest);
             Session["booking"] = booking;
-            return View(Session["booking"]);
-        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Confirm(CreateBooking booking)
-        {
-            if (ModelState.IsValid)
+            if (((int)Session["CurrentGuest"] + 1) >= booking.NumGuest)
             {
-                //Set the room from the room id
-                IRoomRepository repo = new RoomRepository(db);
-                Room room = repo.FindById(booking.Room.RoomId);
-                booking.Room = room;
-
-                IBookingRepository bookingRepo = new BookingRepository(db);
-                bookingRepo.Create(booking.getBooking());
-
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewBooking");
             }
+            Session["CurrentGuest"] = (int)Session["CurrentGuest"] + 1;
+
+            return View(new GuestModel());
+        }
+
+        public ActionResult ViewBooking()
+        {
+            CreateBooking booking = (CreateBooking)Session["booking"];
             return View(booking);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Confirm(CreateBooking entity)
+        {
+            CreateBooking booking = (CreateBooking)Session["booking"];
+            booking.BankAccount = entity.BankAccount;
+            Booking realBooking = booking.getBooking();
+
+            //Set the room from the room id
+            IRoomRepository repo = new RoomRepository(db);
+            Room room = repo.FindById(booking.Room.RoomId);
+            booking.Room = room;
+
+            IBookingRepository bookingRepo = new BookingRepository(db);
+            bookingRepo.Create(realBooking);
+            db.Entry<Booking>(realBooking).State = EntityState.Added;
+            foreach (GuestModel guest in booking.Guests)
+            {
+                var realGuest = guest.getGuest();
+                realGuest.Booking = realBooking;
+                db.Guest.Add(realGuest);
+                db.Entry<Guest>(realGuest).State = EntityState.Added;
+            }
+            db.Addresses.Add(realBooking.BillingAddress);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+            // return View(booking);
         }
 
         public ActionResult Edit(int id = 0)

@@ -19,7 +19,7 @@ namespace ConfidentialEternalPottery.ViewModels
    
         public Genders Gender { get; set; }
 
-        internal Guest getGuess()
+        internal Guest getGuest()
         {
             Guest guest = new Guest();
             guest.FirstName = FirstName;

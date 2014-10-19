@@ -1,0 +1,71 @@
+﻿@model ConfidentialEternalPottery.Models.Booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Booking</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Room.RoomId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Room.RoomId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GuestId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GuestId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BillingAddressId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BillingAddressId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.From)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.From)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.To)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.To)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BackAccount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BackAccount)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BookingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

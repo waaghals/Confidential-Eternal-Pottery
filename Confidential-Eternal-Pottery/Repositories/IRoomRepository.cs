@@ -9,6 +9,7 @@ namespace ConfidentialEternalPottery.Repositories
 {
     interface IRoomRepository: ICreateRepository<Room>, IUpdateRepository<Room>, IDeleteRepository<Room>
     {
-        Room findByNumber(int number);
+        Room FindByNumber(int number);
+        Room FindById(int id);
     }
 }

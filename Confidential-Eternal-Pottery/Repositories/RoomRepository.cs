@@ -18,11 +18,15 @@ namespace ConfidentialEternalPottery.Repositories
             context = hotelContext;
         }
 
-        Room IRoomRepository.findByNumber(int number)
+        Room IRoomRepository.FindByNumber(int number)
         {
             throw new NotImplementedException();
         }
 
+        Room IRoomRepository.FindById(int id)
+        {
+            return context.Rooms.Find(id);
+        }
         Room ICreateRepository<Room>.Create(Room entity)
         {
             return context.Rooms.Add(entity);

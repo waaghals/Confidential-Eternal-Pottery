@@ -12,15 +12,14 @@ namespace ConfidentialEternalPottery.Models
         {
             Guests = new HashSet<Guest>();
         }
-
         [Key]
         public int BookingId { get; set; }
         public int RoomId { get; set; }
         public virtual Room Room { get; set; }
 
-        public int GuestId { get; set; }
-        public virtual Guest Guest { get; set; }
+        public virtual ICollection<Guest> Guests { get; set; }
 
+        
         public int BillingAddressId { get; set; }
         public virtual Address BillingAddress { get; set; }
 
@@ -28,8 +27,6 @@ namespace ConfidentialEternalPottery.Models
         public DateTime To { get; set; }
         public string Email { get; set; }
 
-
-        public virtual ICollection<Guest> Guests { get; set; }
         public decimal Price { get; set; }
         public string BackAccount { get; set; }
     }

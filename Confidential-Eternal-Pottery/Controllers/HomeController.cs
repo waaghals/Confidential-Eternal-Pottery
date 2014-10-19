@@ -17,7 +17,7 @@ namespace ConfidentialEternalPottery.Controllers
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             using (var db = new HotelContext())
             {
-                // Create and save a new Blog 
+                // BookRoom and save a new Blog 
                 Room room = new Room() { Capacity = 3, Number = 20, MinimumPrice = (decimal) 100.00 };
                 db.Rooms.Add(room);
                 room2 = db.Rooms.ToList<Room>();

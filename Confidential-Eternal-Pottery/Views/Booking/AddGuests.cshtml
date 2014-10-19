@@ -1,0 +1,64 @@
+﻿@model ConfidentialEternalPottery.ViewModels.CreateBooking
+
+@{
+    ViewBag.Title = "Add guests " + Model.Room.Number;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("View", "Booking",
+                 FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Room.RoomId)
+
+    <fieldset>
+        <legend>Guests</legend>
+        @for (int i = 0; i < Model.NumGuest; i++)
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Guests.ElementAt(i).FirstName, new { @class = "col-sm-2 control-label" })
+
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.Guests.ElementAt(i).FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Guests.ElementAt(i).FirstName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Guests.ElementAt(i).LastName, new { @class = "col-sm-2 control-label" })
+
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.Guests.ElementAt(i).LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Guests.ElementAt(i).LastName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Guests.ElementAt(i).Dob, new { @class = "col-sm-2 control-label" })
+
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.Guests.ElementAt(i).Dob, new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.Guests.ElementAt(i).Dob)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Guests.ElementAt(i).Gender, new { @class = "col-sm-2 control-label" })
+
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(m => m.Guests.ElementAt(i).Gender, new SelectList(Enum.GetValues(typeof(ConfidentialEternalPottery.Models.Genders))))
+                    @Html.ValidationMessageFor(m => m.Guests.ElementAt(i).Gender)
+                </div>
+            </div>
+        }
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("View other rooms", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -11,7 +11,8 @@ namespace ConfidentialEternalPottery.Models
         public HotelContext()
             : base()
         {
-            Database.SetInitializer<HotelContext>(null);
+            Database.SetInitializer<HotelContext>(new CreateDatabaseIfNotExists<HotelContext>());
+            //Database.SetInitializer<HotelContext>(null);
         }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }

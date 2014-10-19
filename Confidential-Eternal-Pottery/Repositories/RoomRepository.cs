@@ -18,20 +18,28 @@ namespace ConfidentialEternalPottery.Repositories
             context = hotelContext;
         }
 
+        List<Room> IFindAllRepository<Room>.FindAll()
+        {
+            return context.Rooms.ToList<Room>();
+        }
+
         Room IRoomRepository.findByNumber(int number)
         {
-            throw new NotImplementedException();
+            return context.Rooms.Where(room => room.Number == number).FirstOrDefault();
         }
 
         Room ICreateRepository<Room>.Create(Room entity)
         {
-            return context.Rooms.Add(entity);
+            var room = context.Rooms.Add(entity);
+            context.SaveChanges();
+            return room;
         }
 
         Room IUpdateRepository<Room>.Update(Room entity)
         {
             context.Rooms.Attach(entity);
             context.Entry<Room>(entity).State = EntityState.Modified;
+            context.SaveChanges();
 
             return entity;
         }
@@ -39,6 +47,37 @@ namespace ConfidentialEternalPottery.Repositories
         void IDeleteRepository<Room>.Delete(Room entity)
         {
             context.Rooms.Remove(entity);
+            context.SaveChanges();
+        }
+
+        public void DeleteById(int roomId)
+        {
+            var entity = context.Rooms.Where(room => room.RoomId == roomId).FirstOrDefault();
+            if (entity != null)
+            {
+                context.Rooms.Remove(entity);
+                context.SaveChanges();
+            }
+        }
+
+        Room IFindByIdRepository<Room>.FindById(int Id)
+        {
+            return context.Rooms.Where(room => room.RoomId == Id).FirstOrDefault();
+        }
+
+        public void RemovePriceMomentById(int priceMomentId, int roomId)
+        {
+            var entity = context.Rooms.Where(room => room.RoomId == roomId).FirstOrDefault();
+            if (entity != null)
+            {
+                var priceMoment = entity.Prices.Where(pm => pm.PriceMomentId == priceMomentId).FirstOrDefault();
+                if (priceMoment != null)
+                {
+                    entity.Prices.Remove(priceMoment);
+                    context.Entry<PriceMoment>(priceMoment).State = EntityState.Deleted;
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

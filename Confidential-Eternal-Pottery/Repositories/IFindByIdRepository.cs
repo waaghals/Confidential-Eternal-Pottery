@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ConfidentialEternalPottery.Repositories
 {
-    interface IFindAllRepository<T>
+    interface IFindByIdRepository<T>
     {
-        List<T> FindAll();
+        T FindById(int Id);
     }
 
 }

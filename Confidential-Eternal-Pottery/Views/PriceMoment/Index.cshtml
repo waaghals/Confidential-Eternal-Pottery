@@ -1,0 +1,32 @@
+﻿@model ConfidentialEternalPottery.Models.Room
+
+@{
+    ViewBag.Title = "Pricing periods for room";
+}
+
+<h2>@ViewBag.Title @Model.Number</h2>
+<div class="row">
+    @Html.ActionLink("Add new price period", "Create", "PriceMoment", new { roomId = Model.RoomId }, new { @class = "btn btn-default pull-right" })
+    <table class="table table-hover">
+        <tr>
+            <th><i class="fa fa-calendar"></i> From</th>
+            <th><i class="fa fa-calendar"></i> To</th>
+            <th colspan="2"><i class="fa fa-eur"></i>  Price</th>
+        </tr>
+        @foreach (var item in Model.Prices)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.From)</td>
+                <td>@Html.DisplayFor(modelItem => item.To)</td>
+                <td><i class="fa fa-eur"></i> @Html.DisplayFor(modelItem => item.Price)</td>
+                <td class="text-right">
+                    @Html.ActionLink("Change", "Update", "PriceMoment", new { priceMomentId = @item.PriceMomentId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Delete", "Delete", "PriceMoment", new { priceMomentId = @item.PriceMomentId, roomId = Model.RoomId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Return to room", "Index", "Room", new { roomId = Model.RoomId }, null)
+</div>

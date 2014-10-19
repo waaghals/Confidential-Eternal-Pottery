@@ -1,0 +1,47 @@
+﻿@model ConfidentialEternalPottery.ViewModels.CreatePriceMoment
+
+@{
+    ViewBag.Title = "Add a custom pricing period";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Create", "PriceMoment", new { roomId = Model.Room.RoomId }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Room.MinimumPrice)
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Price, new { type = "number", step = "any", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.From, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Price, new { type = "date", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.From)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.To, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.To, new { type = "date", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.To)
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="col-sm-3 pull-right btn btn-default">Save customer price period</button>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "PriceMoment", new { roomId = Model.Room.RoomId }, null)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

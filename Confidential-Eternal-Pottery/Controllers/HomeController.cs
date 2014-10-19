@@ -1,5 +1,6 @@
 ﻿using ConfidentialEternalPottery.Filters;
 using ConfidentialEternalPottery.Models;
+using ConfidentialEternalPottery.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,32 +13,12 @@ namespace ConfidentialEternalPottery.Controllers
     {
         public ActionResult Index()
         {
+            HotelContext db = new HotelContext();
+            IRoomRepository repo = new RoomRepository(db);
 
-            List<Room> room2;
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            using (var db = new HotelContext())
-            {
-                // Create and save a new Blog 
-                Room room = new Room() { Capacity = 3, Number = 20, MinimumPrice = (decimal) 100.00 };
-                db.Rooms.Add(room);
-                room2 = db.Rooms.ToList<Room>();
-                ViewBag.Model = room2;
-                db.SaveChanges();
-            }
-            return View();
-        }
+            List<Room> rooms = repo.FindAll();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Model = rooms;
             return View();
         }
     }

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ConfidentialEternalPottery.Repositories
 {
-    interface IRoomRepository: ICreateRepository<Room>, IUpdateRepository<Room>, IDeleteRepository<Room>
+    interface IRoomRepository : ICreateRepository<Room>, IUpdateRepository<Room>, IDeleteRepository<Room>, IFindAllRepository<Room>, IFindByIdRepository<Room>
     {
         Room findByNumber(int number);
+        void DeleteById(int roomId);
+        void RemovePriceMomentById(int priceMomentId, int roomId);
     }
 }

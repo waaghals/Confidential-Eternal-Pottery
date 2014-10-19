@@ -26,9 +26,9 @@ namespace ConfidentialEternalPottery.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (Price < 0)
+            if (Price < Room.MinimumPrice)
             {
-                yield return new ValidationResult("Price has to be positve.", new[] { "Price" });
+                yield return new ValidationResult("Price has to be higher than the room minimum price.", new[] { "Price" });
             }
             if (To < From)
             {

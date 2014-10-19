@@ -218,6 +218,7 @@
     <Compile Include="Repositories\ICreateRepository.cs" />
     <Compile Include="Repositories\PriceMomentRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="ViewModels\CreatePriceMoment.cs" />
     <Compile Include="ViewModels\CreateRoom.cs" />
   </ItemGroup>
   <ItemGroup>

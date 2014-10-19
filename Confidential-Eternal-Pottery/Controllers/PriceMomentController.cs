@@ -1,5 +1,6 @@
 ﻿using ConfidentialEternalPottery.Models;
 using ConfidentialEternalPottery.Repositories;
+using ConfidentialEternalPottery.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,29 +35,26 @@ namespace ConfidentialEternalPottery.Controllers
         public ActionResult Update(int priceMomentId)
         {
             PriceMoment entity = priceMomentRepo.FindById(priceMomentId);
-            ViewBag.Model = entity;
-
-            // todo
+            // Everything IS set here
             return View(entity);
         }
 
         public ActionResult Create(int roomId)
         {
             Room entity = roomRepo.FindById(roomId);
-            PriceMoment moment = new PriceMoment();
-            ViewBag.Model = entity;
-            moment.Room = entity;
-            return View(moment);
+            return View(new CreatePriceMoment(entity));
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(PriceMoment entity)
         {
+            // This doesn't get called
+            Room room = roomRepo.FindById(entity.RoomId);
+            entity.Room = room;
             if (ModelState.IsValid)
             {
-                Room room = roomRepo.FindById(entity.RoomId);
                 roomRepo.Update(room);
-                entity.Room = room;
                 priceMomentRepo.Update(entity);
                 return RedirectToAction("Index", "PriceMoment", new { roomId = entity.RoomId});
             }
@@ -65,16 +63,20 @@ namespace ConfidentialEternalPottery.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PriceMoment entity)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CreatePriceMoment entity)
         {
-            if (ModelState.IsValid)
+            PriceMoment moment = entity.getPriceMoment();
+            Room room = roomRepo.FindById(entity.RoomId);
+            moment.Room = room;
+            if (ModelState.IsValid && this.TryValidateModel(moment))
             {
-                Room room = roomRepo.FindById(entity.RoomId);
-                room.Prices.Add(entity);
+                moment.Room = room;
+                room.Prices.Add(moment);
                 roomRepo.Update(room);
-                return RedirectToAction("Index", "PriceMoment", new { roomId = entity.Room.RoomId });
+                return RedirectToAction("Index", "PriceMoment", new { roomId = moment.Room.RoomId });
             }
-            ViewBag.Model = entity;
+            entity.Room = room;
             return View(entity);
         }
     }

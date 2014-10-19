@@ -1,4 +1,4 @@
-﻿@model ConfidentialEternalPottery.Models.PriceMoment
+﻿@model ConfidentialEternalPottery.ViewModels.CreatePriceMoment
 
 @{
     ViewBag.Title = "AddCustomPrice";
@@ -25,7 +25,7 @@
             @Html.LabelFor(model => model.From)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.From, new { type = "date" })
+            @Html.EditorFor(model => model.From)
             @Html.ValidationMessageFor(model => model.From)
         </div>
 
@@ -33,7 +33,7 @@
             @Html.LabelFor(model => model.To)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.To, new { type = "date" })
+            @Html.EditorFor(model => model.To)
             @Html.ValidationMessageFor(model => model.To)
         </div>
 
@@ -44,7 +44,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", "PriceMoment", new { roomId = ViewBag.Model.RoomId }, null)
+    @Html.ActionLink("Back to List", "Index", "PriceMoment", new { roomId = Model.Room.RoomId }, null)
 </div>
 
 @section Scripts {

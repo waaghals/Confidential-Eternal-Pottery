@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ConfidentialEternalPottery.Models
+namespace ConfidentialEternalPottery.DomainModel.Models
 {
     public class Room : IValidatableObject
     {

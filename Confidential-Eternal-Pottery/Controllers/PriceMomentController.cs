@@ -1,12 +1,13 @@
 ﻿using ConfidentialEternalPottery.Filters;
-using ConfidentialEternalPottery.Models;
 using ConfidentialEternalPottery.Repositories;
+using ConfidentialEternalPottery.DomainModel.Repositories;
 using ConfidentialEternalPottery.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ConfidentialEternalPottery.DomainModel.Models;
 
 namespace ConfidentialEternalPottery.Controllers
 {
@@ -71,7 +72,7 @@ namespace ConfidentialEternalPottery.Controllers
             PriceMoment moment = entity.getPriceMoment();
             Room room = roomRepo.FindById(entity.RoomId);
             moment.Room = room;
-            if (ModelState.IsValid && this.TryValidateModel(moment))
+            if (this.TryValidateModel(moment))
             {
                 moment.Room = room;
                 room.Prices.Add(moment);

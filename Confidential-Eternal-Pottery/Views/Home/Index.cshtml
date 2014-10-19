@@ -1,11 +1,11 @@
-﻿@model List<ConfidentialEternalPottery.Models.Room>
+﻿@model List<ConfidentialEternalPottery.DomainModel.Models.Room>
 @{
     ViewBag.Title = "Our rooms";
 }
 <h3>Book one of our following rooms:</h3>
 @{
 
-    foreach (ConfidentialEternalPottery.Models.Room room in ViewBag.Model)
+    foreach (ConfidentialEternalPottery.DomainModel.Models.Room room in Model)
     {
         switch (room.Capacity)
         {

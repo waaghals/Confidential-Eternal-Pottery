@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConfidentialEternalPottery.Repositories
+namespace ConfidentialEternalPottery.DomainModel.Repositories
 {
-    interface IFindAllRepository<T>
+    public interface IFindAllRepository<T>
     {
         List<T> FindAll();
     }

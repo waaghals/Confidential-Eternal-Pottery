@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConfidentialEternalPottery.Repositories
+namespace ConfidentialEternalPottery.DomainModel.Repositories
 {
-    interface IFindByIdRepository<T>
+    public interface IFindByIdRepository<T>
     {
         T FindById(int Id);
     }

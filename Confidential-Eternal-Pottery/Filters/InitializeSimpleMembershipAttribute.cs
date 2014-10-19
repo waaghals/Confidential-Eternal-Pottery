@@ -4,7 +4,8 @@ using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
-using ConfidentialEternalPottery.Models;
+using ConfidentialEternalPottery.DomainModel;
+using ConfidentialEternalPottery.DomainModel.Models;
 
 namespace ConfidentialEternalPottery.Filters
 {
@@ -38,7 +39,7 @@ namespace ConfidentialEternalPottery.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("HotelContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

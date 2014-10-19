@@ -5,14 +5,14 @@ namespace ConfidentialEternalPottery.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ConfidentialEternalPottery.Models.HotelContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ConfidentialEternalPottery.DomainModel.Models.HotelContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(ConfidentialEternalPottery.Models.HotelContext context)
+        protected override void Seed(ConfidentialEternalPottery.DomainModel.Models.HotelContext context)
         {
             //  This method will be called after migrating to the latest version.
 

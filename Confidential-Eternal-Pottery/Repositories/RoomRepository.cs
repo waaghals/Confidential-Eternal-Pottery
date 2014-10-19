@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ConfidentialEternalPottery.DomainModel.Repositories;
-using ConfidentialEternalPottery.Models;
+using ConfidentialEternalPottery.DomainModel;
 using System.Data;
 using System.Data.Entity;
+using ConfidentialEternalPottery.DomainModel.Models;
 
 namespace ConfidentialEternalPottery.Repositories
 {

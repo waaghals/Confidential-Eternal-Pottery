@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConfidentialEternalPottery.DomainModel.Models;
 using System.Linq;
 using System.Web;
 
-namespace ConfidentialEternalPottery.Models
+namespace ConfidentialEternalPottery.DomainModel.Models
 {
     public enum Capacity
     {

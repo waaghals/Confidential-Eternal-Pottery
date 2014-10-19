@@ -18,7 +18,7 @@ namespace ConfidentialEternalPottery.Repositories
             context = hotelContext;
         }
 
-        List<Room> IFindAllRepository<Room>.FindAll(Room entity)
+        List<Room> IFindAllRepository<Room>.FindAll()
         {
             return context.Rooms.ToList<Room>();
         }

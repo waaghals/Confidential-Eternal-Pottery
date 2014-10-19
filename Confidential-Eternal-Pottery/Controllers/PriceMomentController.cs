@@ -1,4 +1,5 @@
-﻿using ConfidentialEternalPottery.Models;
+﻿using ConfidentialEternalPottery.Filters;
+using ConfidentialEternalPottery.Models;
 using ConfidentialEternalPottery.Repositories;
 using ConfidentialEternalPottery.ViewModels;
 using System;
@@ -9,6 +10,8 @@ using System.Web.Mvc;
 
 namespace ConfidentialEternalPottery.Controllers
 {
+    [Authorize]
+    [InitializeSimpleMembership]
     public class PriceMomentController : Controller
     {
         //

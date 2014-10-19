@@ -7,7 +7,7 @@ namespace ConfidentialEternalPottery.Repositories
 {
     interface IFindAllRepository<T>
     {
-        List<T> FindAll(T entity);
+        List<T> FindAll();
     }
 
 }

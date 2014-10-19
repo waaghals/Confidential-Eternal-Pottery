@@ -10,13 +10,15 @@ namespace ConfidentialEternalPottery.ViewModels
     public class GuestModel
     {
         [Required]
+        [Display(Name = "Firstname")]
         public string FirstName { get; set; }
         [Required]
+        [Display(Name = "Lastname")]
         public string LastName { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Birthday")]
         public DateTime Dob { get; set; }
-   
         public Genders Gender { get; set; }
 
         internal Guest getGuest()

@@ -191,11 +191,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201410191629168_update-database.cs" />
-    <Compile Include="Migrations\201410191629168_update-database.Designer.cs">
-      <DependentUpon>201410191629168_update-database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -350,11 +345,6 @@
       <Project>{d9259232-69e0-4872-aa4f-e28333a0ac3e}</Project>
       <Name>Confidential-Eternal-Pottery.DomainModel</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410191629168_update-database.resx">
-      <DependentUpon>201410191629168_update-database.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

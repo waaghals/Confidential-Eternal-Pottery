@@ -23,83 +23,98 @@
         <div class="col-sm-6">
             <fieldset>
                 <legend>Booking</legend>
-                <div class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Price)
+                <div class="col-sm-3">
+                    @{
+    TimeSpan diff = Model.To - Model.From;
+    int days = diff.Days;
+                    }
+                    Price per night
                 </div>
-                <div class="col-sm-8">
-                    @Html.DisplayFor(model => model.Price)
+                <div class="col-sm-9">
+                    <i class="fa fa-eur"></i> @Html.DisplayFor(model => model.Price)
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                    Total price
+                </div>
+                <div class="col-sm-9">
+                    @{ decimal totalPrice = Model.Price * days; }
+                    <i class="fa fa-eur"></i> @totalPrice
+                </div>
+                <div class="col-sm-3">
                     @Html.DisplayNameFor(model => model.Room.Number)
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     @Html.DisplayFor(model => model.Room.Number)
                 </div>
                 <div class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.From)
+                    Days
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-5">
                     @Html.DisplayFor(model => model.From)
-                </div>
-                <div class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.To)
-                </div>
-                <div class="col-sm-3">
+                    -
                     @Html.DisplayFor(model => model.To)
+                </div>
+                <div class="col-sm-4">
+                    @{ string dayStr = days == 1 ? "day" : "days"; }
+                    A total of @days @dayStr.
                 </div>
             </fieldset>
         </div>
         <div class="col-sm-6">
             <fieldset>
                 <legend>Address</legend>
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     @Html.DisplayFor(model => model.Address.Street)
-                </div>
-                <div class="col-sm-4">
                     @Html.DisplayFor(model => model.Address.Number)
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-12">
                     @Html.DisplayFor(model => model.Address.Zip)
-                </div>
-                <div class="col-sm-8">
                     @Html.DisplayFor(model => model.Address.City)
                 </div>
             </fieldset>
         </div>
     </div>
     <fieldset>
-        <legend>Guests @Model.Guests.Count</legend>
+        @{ string guest = Model.Guests.Count == 1 ? "1 Guest" : Model.Guests.Count + " Guests"; }
+        <legend>@guest</legend>
         @{
     for (int i = 0; i < Model.Guests.Count; i++)
     {
-        @Html.HiddenFor(model => model.Guests.ElementAt(i).FirstName)
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).FirstName)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).FirstName)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).LastName)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).LastName)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).Dob)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).Dob)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).Gender)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).Gender)
+                    </div>
+                </div>
+            </div>
+        </div>
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).FirstName)
             @Html.HiddenFor(model => model.Guests.ElementAt(i).LastName)
             @Html.HiddenFor(model => model.Guests.ElementAt(i).Dob)
             @Html.HiddenFor(model => model.Guests.ElementAt(i).Gender)
-            <div class="col-sm-4">
-                @Html.DisplayNameFor(m => m.Guests.ElementAt(i).FirstName)
-            </div>
-            <div class="col-sm-4">
-                @Html.DisplayFor(m => m.Guests.ElementAt(i).FirstName)
-            </div>
-            <div class="col-sm-4">
-                @Html.DisplayNameFor(m => m.Guests.ElementAt(i).LastName)
-            </div>
-            <div class="col-sm-8">
-                @Html.DisplayFor(m => m.Guests.ElementAt(i).LastName)
-            </div>
-            <div class="col-sm-3">
-                @Html.DisplayNameFor(m => m.Guests.ElementAt(i).Dob)
-            </div>
-            <div class="col-sm-3">
-                @Html.DisplayFor(m => m.Guests.ElementAt(i).Dob)
-            </div>
-            <div class="col-sm-3">
-                @Html.DisplayNameFor(m => m.Guests.ElementAt(i).Gender)
-            </div>
-            <div class="col-sm-3">
-                @Html.DisplayFor(m => m.Guests.ElementAt(i).Gender)
-            </div>
+
     }
         }
     </fieldset>

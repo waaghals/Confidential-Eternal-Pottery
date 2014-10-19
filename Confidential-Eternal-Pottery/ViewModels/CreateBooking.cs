@@ -14,6 +14,7 @@ namespace ConfidentialEternalPottery.ViewModels
             Guests = new List<GuestModel>();
         }
 
+        [Display(Name = "Number of guests")]
         public byte NumGuest { get; set; }
         public Room Room { get; set; }
         [Required]
@@ -31,6 +32,7 @@ namespace ConfidentialEternalPottery.ViewModels
         public string Email { get; set; }
         public decimal Price { get; set; }
         [Required]
+        [Display(Name = "Back account number")]
         public string BankAccount { get; set; }
 
         public Booking getBooking()

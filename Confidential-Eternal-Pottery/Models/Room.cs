@@ -17,7 +17,9 @@ namespace ConfidentialEternalPottery.Models
         public int RoomId { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
         public byte Capacity { get; set; }
+        [Display(Name = "Room number")]
         public int Number { get; set; }
+        [Display(Name = "Minimal price")]
         public decimal MinimumPrice { get; set; }
         public virtual ICollection<PriceMoment> Prices { get; set; }
 

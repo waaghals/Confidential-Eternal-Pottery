@@ -12,13 +12,10 @@
 
     <fieldset>
         <legend>PriceMoment</legend>
-        @Html.HiddenFor(model => model.Room)
         @Html.HiddenFor(model => model.RoomId)
-        @Html.HiddenFor(model => model.Room.Bookings)
-        @Html.HiddenFor(model => model.Room.Capacity)
         @Html.HiddenFor(model => model.Room.MinimumPrice)
+        @Html.HiddenFor(model => model.Room.Capacity)
         @Html.HiddenFor(model => model.Room.Number)
-        @Html.HiddenFor(model => model.Room.Prices)
         <div class="editor-label">
             @Html.LabelFor(model => model.Price)
         </div>

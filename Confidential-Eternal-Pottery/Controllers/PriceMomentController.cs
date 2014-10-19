@@ -56,9 +56,8 @@ namespace ConfidentialEternalPottery.Controllers
             {
                 roomRepo.Update(room);
                 priceMomentRepo.Update(entity);
-                return RedirectToAction("Index", "PriceMoment", new { roomId = entity.RoomId});
+                return RedirectToAction("Index", "PriceMoment", new { roomId = entity.RoomId });
             }
-            ViewBag.Model = entity;
             return View(entity);
         }
 

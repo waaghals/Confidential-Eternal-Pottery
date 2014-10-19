@@ -22,8 +22,7 @@ namespace ConfidentialEternalPottery.Controllers
         }
         public ActionResult Index(int roomId)
         {
-            ViewBag.Model = roomRepo.FindById(roomId);
-            return View();
+            return View(roomRepo.FindById(roomId));
         }
 
         public ActionResult Delete(int priceMomentId, int roomId)

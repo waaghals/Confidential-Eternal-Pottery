@@ -16,10 +16,12 @@ namespace ConfidentialEternalPottery.Models
         [Required]
         public decimal Price { get; set; }
         [Required]
-        [Column(TypeName = "Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime From { get; set; }
         [Required]
-        [Column(TypeName = "Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime To { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

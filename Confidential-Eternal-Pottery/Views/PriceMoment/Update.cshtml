@@ -2,8 +2,6 @@
 
 @{
     ViewBag.Title = "Update";
-    ConfidentialEternalPottery.Models.PriceMoment priceMoment = (ConfidentialEternalPottery.Models.PriceMoment)ViewBag.Model;
-
 }
 
 <h2>Update</h2>
@@ -20,7 +18,7 @@
             @Html.LabelFor(model => model.Price)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Price, new { Value = priceMoment.Price })
+            @Html.EditorFor(model => model.Price, new { Value = Model.Price })
             @Html.ValidationMessageFor(model => model.Price)
         </div>
 
@@ -28,7 +26,7 @@
             @Html.LabelFor(model => model.From)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.From, new { Value = priceMoment.From, type = "date" })
+            @Html.EditorFor(model => model.From)
             @Html.ValidationMessageFor(model => model.From)
         </div>
 
@@ -36,7 +34,7 @@
             @Html.LabelFor(model => model.To)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.To, new { type = "Date", Value = priceMoment.To })
+            @Html.EditorFor(model => model.To)
             @Html.ValidationMessageFor(model => model.To)
         </div>
 

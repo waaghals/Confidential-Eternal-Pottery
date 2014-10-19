@@ -1,7 +1,6 @@
 ﻿@model ConfidentialEternalPottery.Models.Room
 @{
     ViewBag.Title = "Update";
-    ConfidentialEternalPottery.Models.Room room = (ConfidentialEternalPottery.Models.Room)ViewBag.Model;
 }
 
 @{
@@ -35,19 +34,19 @@
             @Html.LabelFor(model => model.Number)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Number, new { Value = room.Number })
+            @Html.TextBoxFor(model => model.Number, new { Value = Model.Number })
             @Html.ValidationMessageFor(model => model.Number)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Capacity)
         </div>
-        @Html.DropDownList("Capacity", new SelectList(listItems, "Value", "Text", room.Capacity.ToString()), room.Capacity)
+        @Html.DropDownList("Capacity", new SelectList(listItems, "Value", "Text", Model.Capacity.ToString()), Model.Capacity)
         @Html.ValidationMessageFor(model => model.Capacity)
         <div class="editor-label">
             @Html.LabelFor(model => model.MinimumPrice)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.MinimumPrice, new { Value = room.MinimumPrice })
+            @Html.TextBoxFor(model => model.MinimumPrice, new { Value = Model.MinimumPrice })
             @Html.ValidationMessageFor(model => model.MinimumPrice)
 
         </div>

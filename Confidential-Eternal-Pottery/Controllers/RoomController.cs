@@ -27,8 +27,7 @@ namespace ConfidentialEternalPottery.Controllers
 
         public ActionResult Update(int roomId)
         {
-            ViewBag.Model = roomRepo.FindById(roomId);
-            return View();
+            return View(roomRepo.FindById(roomId));
         }
 
         public ActionResult Create()

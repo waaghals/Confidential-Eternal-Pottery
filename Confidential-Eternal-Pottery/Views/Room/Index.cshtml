@@ -1,5 +1,5 @@
-﻿@{
-    List<ConfidentialEternalPottery.Models.Room> allRooms = (List<ConfidentialEternalPottery.Models.Room>)ViewBag.Rooms;
+﻿@model IEnumerable<ConfidentialEternalPottery.Models.Room>
+@{
     ViewBag.Title = "RoomOverview";
 }
 
@@ -35,27 +35,27 @@
 
 <table class="tg">
     <tr>
-        <th class="tg-031e">Number</th>
-        <th class="tg-031e">Capacity</th>
-        <th class="tg-031e">MinimumPrice</th>
-        <th class="tg-031e"></th>
-        <th class="tg-031e"></th>
+        <th class="tg-031e">@Html.DisplayNameFor(model => model.Number)</th>
+        <th class="tg-031e">@Html.DisplayNameFor(model => model.Capacity)</th>
+        <th class="tg-031e">@Html.DisplayNameFor(model => model.MinimumPrice)</th>
         <th class="tg-031e"></th>
     </tr>
 
-    @{
-        foreach (var item in allRooms)
-        {
-            <tr>
-                <td class="tg-031e">@item.Number</td>
-                <td class="tg-031e">@item.Capacity</td>
-                <td class="tg-031e">@item.MinimumPrice</td>
-                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Index", "PriceMoment", new { roomId = @item.RoomId })'" style="color: grey;">Custom Pricing</button></td>
-                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Update", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Update</button></td>
-                <td class="tg-031e"><button onclick="location.href = '@Url.Action("Delete", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Delete</button></td>
-            </tr>
-        }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="tg-031e">@Html.DisplayFor(modelItem => item.Number)</td>
+            <td class="tg-031e">@Html.DisplayFor(modelItem => item.Capacity)</td>
+            <td class="tg-031e">@Html.DisplayFor(modelItem => item.MinimumPrice)</td>
+            <td class="tg-031e">
+                <button onclick="location.href = '@Url.Action("Index", "PriceMoment", new { roomId = @item.RoomId })'" style="color: grey;">Custom Pricing</button>
+                <button onclick="location.href = '@Url.Action("Update", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Update</button>
+                <button onclick="location.href = '@Url.Action("Delete", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Delete</button>
+            </td>
+        </tr>
     }
+
 </table>
 
 <button onclick="location.href = '@Url.Action("Create", "Room")'" style="color: grey;">Add New</button>

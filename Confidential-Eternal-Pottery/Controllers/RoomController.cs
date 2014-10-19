@@ -1,4 +1,5 @@
 ﻿using ConfidentialEternalPottery.Models;
+using ConfidentialEternalPottery.ViewModels;
 using ConfidentialEternalPottery.Repositories;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,12 @@ namespace ConfidentialEternalPottery.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Rooms = roomRepo.FindAll(null);
-            return View();
+            return View(roomRepo.FindAll(null));
         }
-
+        [HttpGet]
         public ActionResult Delete(int roomId)
         {
-            roomRepo.DeleteById(roomId);
-            return RedirectToAction("Index", "Room");
+            return View(roomRepo.FindById(roomId));
         }
 
         public ActionResult Update(int roomId)
@@ -34,10 +33,11 @@ namespace ConfidentialEternalPottery.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View(new CreateRoom());
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Room entity)
         {
             if (ModelState.IsValid)
@@ -49,6 +49,15 @@ namespace ConfidentialEternalPottery.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Room room)
+        {
+            roomRepo.DeleteById(room.RoomId);
+            return RedirectToAction("Index", "Room");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Room entity)
         {
             if (ModelState.IsValid)

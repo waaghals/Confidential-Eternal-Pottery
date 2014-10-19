@@ -1,0 +1,41 @@
+﻿@model ConfidentialEternalPottery.Models.Room
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Room</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Capacity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Capacity)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Number)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Number)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MinimumPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinimumPrice)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        @Html.HiddenFor(model => model.RoomId)
+        <button onclick="location.href = '@Url.Action("Index", "PriceMoment", new { room = Model })'" style="color: grey;">Delete</button>
+    </p>
+}
+@Html.ActionLink("Back to List", "Index")

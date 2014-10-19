@@ -218,6 +218,7 @@
     <Compile Include="Repositories\ICreateRepository.cs" />
     <Compile Include="Repositories\PriceMomentRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="ViewModels\CreateRoom.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -336,10 +337,10 @@
     <Content Include="Views\PriceMoment\Index.cshtml" />
     <Content Include="Views\PriceMoment\Create.cshtml" />
     <Content Include="Views\PriceMoment\Update.cshtml" />
+    <Content Include="Views\Room\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

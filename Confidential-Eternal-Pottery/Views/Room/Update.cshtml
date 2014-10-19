@@ -27,6 +27,7 @@
 <h2>Update</h2>
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Room</legend>

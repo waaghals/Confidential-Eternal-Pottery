@@ -1,4 +1,4 @@
-﻿@model ConfidentialEternalPottery.Models.Room
+﻿@model ConfidentialEternalPottery.ViewModels.CreateRoom
 
 @{
     ViewBag.Title = "Create";
@@ -30,6 +30,7 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Room</legend>

@@ -47,6 +47,7 @@ namespace ConfidentialEternalPottery.Repositories
         void IDeleteRepository<Room>.Delete(Room entity)
         {
             context.Rooms.Remove(entity);
+            context.SaveChanges();
         }
 
         public void DeleteById(int roomId)

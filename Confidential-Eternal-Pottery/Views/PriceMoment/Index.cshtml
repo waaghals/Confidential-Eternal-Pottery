@@ -1,60 +1,32 @@
 ﻿@model ConfidentialEternalPottery.Models.Room
 
 @{
-    ViewBag.Title = "CustomPricing";
+    ViewBag.Title = "Pricing periods for room";
 }
 
-<h2>CustomPricing Overview</h2>
-
-<style type="text/css">
-    .tg {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-
-        .tg td {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-        }
-
-        .tg th {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-        }
-</style>
-
-<table class="tg">
-    <tr>
-        <th class="tg-031e">From</th>
-        <th class="tg-031e">To</th>
-        <th class="tg-031e">Price</th>
-        <th class="tg-031e"></th>
-    </tr>
-    @foreach (var item in Model.Prices)
-    {
+<h2>@ViewBag.Title @Model.Number</h2>
+<div class="row">
+    @Html.ActionLink("Add new price period", "Create", "PriceMoment", new { roomId = Model.RoomId }, new { @class = "btn btn-default pull-right" })
+    <table class="table table-hover">
         <tr>
-            <td class="tg-031e">@Html.DisplayFor(modelItem => item.From)</td>
-            <td class="tg-031e">@Html.DisplayFor(modelItem => item.To)</td>
-            <td class="tg-031e">@Html.DisplayFor(modelItem => item.Price)</td>
-            <td class="tg-031e">
-                <button onclick="location.href = '@Url.Action("Update", "PriceMoment", new { priceMomentId = @item.PriceMomentId })'" style="color: grey;">Update</button>
-                <button onclick="location.href = '@Url.Action("Delete", "PriceMoment", new { priceMomentId = @item.PriceMomentId, roomId = Model.RoomId })'" style="color: grey;">Delete</button>
-            </td>
+            <th><i class="fa fa-calendar"></i> From</th>
+            <th><i class="fa fa-calendar"></i> To</th>
+            <th colspan="2"><i class="fa fa-eur"></i>  Price</th>
         </tr>
-    }
-</table>
-<button onclick="location.href = '@Url.Action("Create", "PriceMoment", new { roomId = Model.RoomId })'" style="color: grey;">Add New</button>
+        @foreach (var item in Model.Prices)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.From)</td>
+                <td>@Html.DisplayFor(modelItem => item.To)</td>
+                <td><i class="fa fa-eur"></i> @Html.DisplayFor(modelItem => item.Price)</td>
+                <td class="text-right">
+                    @Html.ActionLink("Change", "Update", "PriceMoment", new { priceMomentId = @item.PriceMomentId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Delete", "Delete", "PriceMoment", new { priceMomentId = @item.PriceMomentId, roomId = Model.RoomId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 <div>
     @Html.ActionLink("Return to room", "Index", "Room", new { roomId = Model.RoomId }, null)
 </div>

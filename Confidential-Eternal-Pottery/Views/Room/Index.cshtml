@@ -1,61 +1,34 @@
 ﻿@model IEnumerable<ConfidentialEternalPottery.Models.Room>
 @{
-    ViewBag.Title = "RoomOverview";
+    ViewBag.Title = "Room Overview";
 }
 
-<h2>Overview</h2>
-
-<style type="text/css">
-    .tg {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-
-        .tg td {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-        }
-
-        .tg th {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-        }
-</style>
-
-<table class="tg">
-    <tr>
-        <th class="tg-031e">@Html.DisplayNameFor(model => model.Number)</th>
-        <th class="tg-031e">@Html.DisplayNameFor(model => model.Capacity)</th>
-        <th class="tg-031e">@Html.DisplayNameFor(model => model.MinimumPrice)</th>
-        <th class="tg-031e"></th>
-    </tr>
+<h2>Room overview</h2>
+<div class="row">
 
 
-    @foreach (var item in Model)
-    {
+    @Html.ActionLink("Create new room", "Create", "Room", new { }, new { @class = "btn btn-default pull-right" })
+    <table class="table table-hover">
         <tr>
-            <td class="tg-031e">@Html.DisplayFor(modelItem => item.Number)</td>
-            <td class="tg-031e">@Html.DisplayFor(modelItem => item.Capacity)</td>
-            <td class="tg-031e">@Html.DisplayFor(modelItem => item.MinimumPrice)</td>
-            <td class="tg-031e">
-                <button onclick="location.href = '@Url.Action("Index", "PriceMoment", new { roomId = @item.RoomId })'" style="color: grey;">Custom Pricing</button>
-                <button onclick="location.href = '@Url.Action("Update", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Update</button>
-                <button onclick="location.href = '@Url.Action("Delete", "Room", new { roomId = @item.RoomId })'" style="color: grey;">Delete</button>
-            </td>
+            <th># @Html.DisplayNameFor(model => model.Number)</th>
+            <th><i class="fa fa-group"></i> @Html.DisplayNameFor(model => model.Capacity)</th>
+            <th colspan="2"><i class="fa fa-eur"></i> @Html.DisplayNameFor(model => model.MinimumPrice)</th>
         </tr>
-    }
 
-</table>
 
-<button onclick="location.href = '@Url.Action("Create", "Room")'" style="color: grey;">Add New</button>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Number)</td>
+                <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
+                <td><i class="fa fa-eur"></i> @Html.DisplayFor(modelItem => item.MinimumPrice)</td>
+                <td class="text-right">
+                    @Html.ActionLink("Custom pricing", "Index", "PriceMoment", new { roomId = @item.RoomId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Edit", "Update", "Room", new { roomId = @item.RoomId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Delete", "Delete", "Room", new { roomId = @item.RoomId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

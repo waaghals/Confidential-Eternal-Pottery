@@ -1,7 +1,7 @@
 ﻿@model ConfidentialEternalPottery.ViewModels.CreateRoom
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create a new room";
     List<SelectListItem> listItems = new List<SelectListItem>();
     listItems.Add(new SelectListItem
      {
@@ -20,43 +20,37 @@
             });
 }
 
-<style>
-    select {
-        Color: black;
-    }
-</style>
+<h2>@ViewBag.Title</h2>
 
-<h2>Create</h2>
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Room", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>Room</legend>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Number)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Number)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Number, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Number, new { type = "number", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Number)
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Capacity)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Capacity, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.Capacity, listItems, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Capacity)
         </div>
-        @Html.DropDownList("Capacity", listItems)
-        @Html.ValidationMessageFor(model => model.Capacity)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.MinimumPrice)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.MinimumPrice)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MinimumPrice, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.MinimumPrice, new { type = "number", step = "any", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.MinimumPrice)
-
         </div>
-        <br />
-        <input type="submit" value="Create new room" />
-    </fieldset>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="col-sm-3 pull-right btn btn-default">Create new room</button>
+    </div>
 }
 
 <div>

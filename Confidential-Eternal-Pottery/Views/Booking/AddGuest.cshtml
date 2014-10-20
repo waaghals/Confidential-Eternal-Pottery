@@ -44,7 +44,7 @@
             @Html.LabelFor(m => m.Gender, new { @class = "col-sm-2 control-label" })
 
             <div class="col-sm-10">
-                @Html.DropDownListFor(m => m.Gender, new SelectList(Enum.GetValues(typeof(ConfidentialEternalPottery.Models.Genders))), new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Gender, new SelectList(Enum.GetValues(typeof(ConfidentialEternalPottery.DomainModel.Models.Genders))), new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Gender)
             </div>
         </div>

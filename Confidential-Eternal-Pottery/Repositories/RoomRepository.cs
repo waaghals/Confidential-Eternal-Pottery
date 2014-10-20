@@ -18,7 +18,7 @@ namespace ConfidentialEternalPottery.Repositories
         {
             context = hotelContext;
         }
-
+        Room IRoomRepository.findByNumber(int number)
         {
             return context.Rooms.Where(room => room.Number == number).FirstOrDefault();
         }
@@ -28,12 +28,8 @@ namespace ConfidentialEternalPottery.Repositories
             return context.Rooms.ToList<Room>();
         }
 
-        Room IRoomRepository.findByNumber(int number)
 
-        Room IRoomRepository.FindById(int id)
-        {
-            return context.Rooms.Find(id);
-        }
+
         Room ICreateRepository<Room>.Create(Room entity)
         {
             var room = context.Rooms.Add(entity);
@@ -66,9 +62,9 @@ namespace ConfidentialEternalPottery.Repositories
             }
         }
 
-        Room IFindByIdRepository<Room>.FindById(int Id)
+        Room IFindByIdRepository<Room>.FindById(int id)
         {
-            return context.Rooms.Where(room => room.RoomId == Id).FirstOrDefault();
+            return context.Rooms.Find(id);
         }
 
         public void RemovePriceMomentById(int priceMomentId, int roomId)

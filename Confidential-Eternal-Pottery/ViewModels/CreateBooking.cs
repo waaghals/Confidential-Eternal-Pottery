@@ -1,4 +1,4 @@
-﻿using ConfidentialEternalPottery.Models;
+﻿using ConfidentialEternalPottery.DomainModel.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -45,6 +45,7 @@ namespace ConfidentialEternalPottery.ViewModels
             booking.To = To;
             booking.Room = Room;
             booking.Price = Room.CurrentPrice();
+            booking.BackAccount = BankAccount;
             
             foreach(GuestModel guest in Guests)
             {

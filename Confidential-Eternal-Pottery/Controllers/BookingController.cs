@@ -5,9 +5,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ConfidentialEternalPottery.Models;
+using ConfidentialEternalPottery.DomainModel.Models;
 using ConfidentialEternalPottery.ViewModels;
 using ConfidentialEternalPottery.Repositories;
+using ConfidentialEternalPottery.DomainModel.Repositories;
 using System.Collections;
 
 namespace ConfidentialEternalPottery.Controllers
@@ -80,10 +81,10 @@ namespace ConfidentialEternalPottery.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Confirm(CreateBooking entity)
+        public ActionResult Confirm(CreateBooking booking)
         {
-            CreateBooking booking = (CreateBooking)Session["booking"];
-            booking.BankAccount = entity.BankAccount;
+            //CreateBooking booking = (CreateBooking)Session["booking"];
+            //booking.BankAccount = entity.BankAccount;
             Booking realBooking = booking.getBooking();
 
             //Set the room from the room id

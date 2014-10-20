@@ -15,6 +15,8 @@ namespace ConfidentialEternalPottery.DomainModel.Models
         }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Guest> Guest { get; set; }
     }
     public class DatabaseInitializer : CreateDatabaseIfNotExists<HotelContext>
     {

@@ -9,7 +9,8 @@ using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using ConfidentialEternalPottery.Filters;
-using ConfidentialEternalPottery.Models;
+using ConfidentialEternalPottery.DomainModel;
+using ConfidentialEternalPottery.DomainModel.Models;
 
 namespace ConfidentialEternalPottery.Controllers
 {

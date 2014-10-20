@@ -1,4 +1,6 @@
-﻿using ConfidentialEternalPottery.Models;
+﻿using ConfidentialEternalPottery.DomainModel;
+using ConfidentialEternalPottery.DomainModel.Repositories;
+using ConfidentialEternalPottery.DomainModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;

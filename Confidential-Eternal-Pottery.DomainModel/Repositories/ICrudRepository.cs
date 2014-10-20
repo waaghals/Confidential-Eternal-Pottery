@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConfidentialEternalPottery.DomainModel.Repositories
 {
-    interface ICrudRepository<T>
+    public interface ICrudRepository<T>
     {
         List<T> GetAll();
         T Create(T entity);

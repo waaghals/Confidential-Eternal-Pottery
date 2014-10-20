@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace ConfidentialEternalPottery.Models
+namespace ConfidentialEternalPottery.DomainModel.Models
 {
     public class Booking
     {

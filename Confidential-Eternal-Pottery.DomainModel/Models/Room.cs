@@ -15,17 +15,15 @@ namespace ConfidentialEternalPottery.DomainModel.Models
         }
         [Key]
         public int RoomId { get; set; }
-
         public virtual ICollection<Booking> Bookings { get; set; }
         [Required]
 
         public byte Capacity { get; set; }
         [Required]
-
+        [Display(Name = "Room number")]
         public int Number { get; set; }
         [Required]
-
-        public decimal MinimumPrice { get; set; }
+        [Display(Name = "Minimal price")]        public decimal MinimumPrice { get; set; }
         public virtual ICollection<PriceMoment> Prices { get; set; }
 
         public decimal Price { get { return CurrentPrice(); } }

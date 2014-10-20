@@ -1,0 +1,67 @@
+﻿@model ConfidentialEternalPottery.ViewModels.GuestModel
+
+@{
+    ViewBag.Title = "Add guests ";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AddGuest", "Booking",
+                 FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Guests</legend>
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Dob, new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Dob, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.Dob)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender, new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.DropDownListFor(m => m.Gender, new SelectList(Enum.GetValues(typeof(ConfidentialEternalPottery.DomainModel.Models.Genders))), new { @class = "form-control"})
+                @Html.ValidationMessageFor(m => m.Gender)
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="form-group">
+        <div class="col-sm-offset-10 col-sm-2 pull-right">
+
+            <button type="submit" class="btn btn-default">Next</button>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("View other rooms", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

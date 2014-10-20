@@ -1,0 +1,95 @@
+﻿@model ConfidentialEternalPottery.Models.Booking
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Booking</legend>
+
+        @Html.HiddenFor(model => model.BookingId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoomId, "Room")
+        </div>
+        <a href="~/Views/Booking/Edit.cshtml">~/Views/Booking/Edit.cshtml</a>
+        <div class="editor-field">
+            @Html.DropDownList("RoomId", String.Empty)
+            @Html.ValidationMessageFor(model => model.RoomId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GuestId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GuestId)
+            @Html.ValidationMessageFor(model => model.GuestId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingAddressId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillingAddressId)
+            @Html.ValidationMessageFor(model => model.BillingAddressId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.From)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.From)
+            @Html.ValidationMessageFor(model => model.From)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.To)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.To)
+            @Html.ValidationMessageFor(model => model.To)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BackAccount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BackAccount)
+            @Html.ValidationMessageFor(model => model.BackAccount)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

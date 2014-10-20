@@ -1,0 +1,141 @@
+﻿@model ConfidentialEternalPottery.ViewModels.CreateBooking
+
+@{
+    ViewBag.Title = "View booking";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Confirm", "Booking",
+                 FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Room.RoomId)
+    @Html.HiddenFor(model => model.From)
+    @Html.HiddenFor(model => model.To)
+    @Html.HiddenFor(model => model.Address.City)
+    @Html.HiddenFor(model => model.Address.Number)
+    @Html.HiddenFor(model => model.Address.Street)
+    @Html.HiddenFor(model => model.Address.Zip)
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.Guests)
+    <div class="row">
+        <div class="col-sm-6">
+            <fieldset>
+                <legend>Booking</legend>
+                <div class="col-sm-3">
+                    @{
+    TimeSpan diff = Model.To - Model.From;
+    int days = diff.Days;
+                    }
+                    Price per night
+                </div>
+                <div class="col-sm-9">
+                    <i class="fa fa-eur"></i> @Html.DisplayFor(model => model.Price)
+                </div>
+                <div class="col-sm-3">
+                    Total price
+                </div>
+                <div class="col-sm-9">
+                    @{ decimal totalPrice = Model.Price * days; }
+                    <i class="fa fa-eur"></i> @totalPrice
+                </div>
+                <div class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Room.Number)
+                </div>
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.Room.Number)
+                </div>
+                <div class="col-sm-3">
+                    Days
+                </div>
+                <div class="col-sm-5">
+                    @Html.DisplayFor(model => model.From)
+                    -
+                    @Html.DisplayFor(model => model.To)
+                </div>
+                <div class="col-sm-4">
+                    @{ string dayStr = days == 1 ? "day" : "days"; }
+                    A total of @days @dayStr.
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-sm-6">
+            <fieldset>
+                <legend>Address</legend>
+                <div class="col-sm-12">
+                    @Html.DisplayFor(model => model.Address.Street)
+                    @Html.DisplayFor(model => model.Address.Number)
+                </div>
+                <div class="col-sm-12">
+                    @Html.DisplayFor(model => model.Address.Zip)
+                    @Html.DisplayFor(model => model.Address.City)
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <fieldset>
+        @{ string guest = Model.Guests.Count == 1 ? "1 Guest" : Model.Guests.Count + " Guests"; }
+        <legend>@guest</legend>
+        @{
+    for (int i = 0; i < Model.Guests.Count; i++)
+    {
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).FirstName)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).FirstName)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).LastName)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).LastName)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).Dob)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).Dob)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayNameFor(m => m.Guests.ElementAt(i).Gender)
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(m => m.Guests.ElementAt(i).Gender)
+                    </div>
+                </div>
+            </div>
+        </div>
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).FirstName)
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).LastName)
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).Dob)
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).Gender)
+
+    }
+        }
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Confirmation</legend>
+        <p>Please enter your back account number to confirm your booking.</p>
+        <div class="form-group">
+            @Html.LabelFor(m => m.BankAccount, new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.BankAccount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.BankAccount)
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-group">
+        <div class="col-sm-offset-10 col-sm-2 pull-right">
+            <button type="submit" class="btn btn-default">Book room</button>
+        </div>
+    </div>
+}

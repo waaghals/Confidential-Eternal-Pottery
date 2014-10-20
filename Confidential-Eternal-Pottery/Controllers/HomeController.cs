@@ -17,9 +17,7 @@ namespace ConfidentialEternalPottery.Controllers
         {
             HotelContext db = new HotelContext();
             IRoomRepository repo = new RoomRepository(db);
-
             List<Room> rooms = repo.FindAll();
-
             return View(rooms);
         }
     }

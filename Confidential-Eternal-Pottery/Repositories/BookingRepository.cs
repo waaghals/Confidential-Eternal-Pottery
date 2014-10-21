@@ -20,7 +20,6 @@ namespace ConfidentialEternalPottery.Repositories
 
         public Booking Create(Booking entity)
         {
-            context.Addresses.Add(entity.BillingAddress);
             return context.Bookings.Add(entity);
         }
 

@@ -1,5 +1,10 @@
-﻿@{
+﻿@model ConfidentialEternalPottery.DomainModel.Models.Booking
+@{
     ViewBag.Title = "Confirm";
 }
 
 <h2>Completed</h2>
+<p>
+    You have book room @Model.Room.Number!
+    <a href="/">View rooms</a>
+</p>

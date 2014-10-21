@@ -11,6 +11,9 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Room.RoomId)
+    @Html.HiddenFor(model => model.Room.Capacity)
+    @Html.HiddenFor(model => model.Room.MinimumPrice)
+    @Html.HiddenFor(model => model.Room.Number)
     @Html.HiddenFor(model => model.From)
     @Html.HiddenFor(model => model.To)
     @Html.HiddenFor(model => model.Address.City)
@@ -18,7 +21,15 @@
     @Html.HiddenFor(model => model.Address.Street)
     @Html.HiddenFor(model => model.Address.Zip)
     @Html.HiddenFor(model => model.Email)
-    @Html.HiddenFor(model => model.Guests)
+  
+        for(int i=0; i < Model.Guests.Count; i++)
+        {
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).Dob)
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).FirstName)
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).LastName)
+            @Html.HiddenFor(model => model.Guests.ElementAt(i).Gender)
+        }
+    
     <div class="row">
         <div class="col-sm-6">
             <fieldset>

@@ -38,8 +38,7 @@ namespace ConfidentialEternalPottery.ViewModels
         public Booking getBooking()
         {
             Booking booking = new Booking();
-            booking.BillingAddress = Address.getAddress();
-            booking.BillingAddress.Booking = booking;
+            booking.Addresses.Add(Address.getAddress());
             booking.Email = Email;
             booking.From = From;
             booking.To = To;

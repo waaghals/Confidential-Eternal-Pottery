@@ -11,6 +11,7 @@ namespace ConfidentialEternalPottery.DomainModel.Models
     {
         public Booking()
         {
+            Addresses = new HashSet<Address>();
             Guests = new HashSet<Guest>();
         }
         [Key]
@@ -20,9 +21,7 @@ namespace ConfidentialEternalPottery.DomainModel.Models
 
         public virtual ICollection<Guest> Guests { get; set; }
 
-        
-        public int BillingAddressId { get; set; }
-        public virtual Address BillingAddress { get; set; }
+        public virtual ICollection<Address> Addresses { get; set; }
 
         public DateTime From { get; set; }
         public DateTime To { get; set; }

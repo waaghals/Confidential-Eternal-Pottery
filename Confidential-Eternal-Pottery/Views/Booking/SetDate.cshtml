@@ -14,6 +14,12 @@
     @Html.HiddenFor(model => model.Room.RoomId)
     @Html.HiddenFor(model => model.Room.Number)
     @Html.HiddenFor(model => model.Price)
+    @Html.HiddenFor(model => model.Room.MinimumPrice)
+
+    for (int i = 0; i < Model.Room.Prices.Count; i++)
+    {
+        @Html.HiddenFor(model => model.Room.Prices.ElementAt(i).PriceMomentId)
+    }
 
     <fieldset>
         <legend>Nights</legend>

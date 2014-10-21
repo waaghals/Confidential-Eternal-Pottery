@@ -36,12 +36,14 @@ namespace ConfidentialEternalPottery.Controllers
 
         public ActionResult SetDate(int id)
         {
-            IRoomRepository repo = new RoomRepository(db);
-            Room room = repo.FindById(id);
+            IRoomRepository roomRepo = new RoomRepository(db);
+            IPriceMomentRepository priceMomentRepo = new PriceMomentRepository(db);
+            Room room = roomRepo.FindById(id);
             if (room == null)
             {
                 return HttpNotFound();
             }
+            Session["currentPriceMoment"] = room.Prices;
             return View(new CreateBooking() { Room = room, Price = room.CurrentPrice() });
 
         }
@@ -50,10 +52,33 @@ namespace ConfidentialEternalPottery.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddGuests(CreateBooking booking)
         {
+            int amountOfDays = (int)(booking.To - booking.From.Date).TotalDays;
+            decimal correctPrice = 0;
+            ICollection<PriceMoment> priceMoments = (ICollection<PriceMoment>)Session["currentPriceMoment"];
+            for (int i = 0; i < amountOfDays; i++)
+            {
+                decimal customPrice = booking.Room.MinimumPrice;
+                PriceMoment customMoment = null;
+                foreach (PriceMoment pm in priceMoments)
+                {
+                    if (pm.To < booking.To && pm.From < booking.From)
+                    {
+                        if (customMoment == null)
+                        {
+                            customMoment = pm;
+                        } else if(customMoment.To < pm.To){
+                            customMoment = pm;
+                        }
+                    }
+                } 
+                if (customMoment != null)
+                    customPrice = customMoment.Price;
+                correctPrice += customPrice;
+            }
+            booking.Price = correctPrice;
             Session["CurrentGuest"] = 0;
             Session["booking"] = booking;
-            GuestModel guest = new GuestModel();
-            return View(guest);
+            return View(new GuestModel());
         }
 
         [HttpPost]
@@ -81,10 +106,10 @@ namespace ConfidentialEternalPottery.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Confirm(CreateBooking booking)
+        public ActionResult Confirm(CreateBooking entity)
         {
-            //CreateBooking booking = (CreateBooking)Session["booking"];
-            //booking.BankAccount = entity.BankAccount;
+            CreateBooking booking = (CreateBooking)Session["booking"];
+            booking.BankAccount = entity.BankAccount;
             Booking realBooking = booking.getBooking();
 
             //Set the room from the room id
@@ -99,10 +124,11 @@ namespace ConfidentialEternalPottery.Controllers
             {
                 var realGuest = guest.getGuest();
                 realGuest.Booking = realBooking;
-                db.Guest.Add(realGuest);
+                db.Guests.Add(realGuest);
                 db.Entry<Guest>(realGuest).State = EntityState.Added;
             }
             db.Addresses.Add(realBooking.BillingAddress);
+            db.Entry<Address>(realBooking.BillingAddress).State = EntityState.Added;
             db.SaveChanges();
             return RedirectToAction("Index");
 

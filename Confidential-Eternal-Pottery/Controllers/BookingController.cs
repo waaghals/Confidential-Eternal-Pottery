@@ -133,5 +133,14 @@ namespace ConfidentialEternalPottery.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        [Authorize]
+        public ActionResult Overview()
+        {
+            IBookingRepository repo = new BookingRepository(db);
+            List<Booking> rooms = repo.FindAll();
+
+            return View(rooms);
+        }
     }
 }

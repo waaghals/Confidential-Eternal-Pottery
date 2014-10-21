@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConfidentialEternalPottery.DomainModel.Repositories
 {
-    public interface IBookingRepository: ICreateRepository<Booking>, IUpdateRepository<Booking>
+    public interface IBookingRepository: ICreateRepository<Booking>, IUpdateRepository<Booking>, IFindAllRepository<Booking>
     {
         
     }

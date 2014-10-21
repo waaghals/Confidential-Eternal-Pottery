@@ -30,5 +30,10 @@ namespace ConfidentialEternalPottery.Repositories
 
             return entity;
         }
+
+        public List<Booking> FindAll()
+        {
+            return context.Bookings.ToList<Booking>();;
+        }
     }
 }

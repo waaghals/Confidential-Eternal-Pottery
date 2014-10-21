@@ -204,6 +204,7 @@
     <Compile Include="ViewModels\GuestModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\datatables.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -331,6 +332,7 @@
     <Content Include="Views\Booking\AddGuests.cshtml" />
     <Content Include="Views\Booking\AddGuest.cshtml" />
     <Content Include="Views\Booking\Confirm.cshtml" />
+    <Content Include="Views\Booking\Overview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

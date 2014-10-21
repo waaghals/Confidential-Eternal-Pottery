@@ -14,6 +14,9 @@ namespace ConfidentialEternalPottery
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/Scripts/datatables.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));

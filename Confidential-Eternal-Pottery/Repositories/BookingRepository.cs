@@ -33,7 +33,12 @@ namespace ConfidentialEternalPottery.Repositories
 
         public List<Booking> FindAll()
         {
-            return context.Bookings.ToList<Booking>();;
+            return context.Bookings.ToList<Booking>();
+        }
+
+        public Booking FindById(int Id)
+        {
+            return context.Bookings.Find(Id);
         }
     }
 }

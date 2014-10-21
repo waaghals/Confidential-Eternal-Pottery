@@ -138,9 +138,18 @@ namespace ConfidentialEternalPottery.Controllers
         public ActionResult Overview()
         {
             IBookingRepository repo = new BookingRepository(db);
-            List<Booking> rooms = repo.FindAll();
+            List<Booking> bookings = repo.FindAll();
 
-            return View(rooms);
+            return View(bookings);
+        }
+
+        [Authorize]
+        public ActionResult GuestsForBooking(int id)
+        {
+            IBookingRepository repo = new BookingRepository(db);
+            Booking booking = repo.FindById(id);
+
+            return View(booking.Guests);
         }
     }
 }

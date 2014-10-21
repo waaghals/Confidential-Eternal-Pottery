@@ -63,6 +63,7 @@
     <Compile Include="Repositories\IDeleteRepository.cs" />
     <Compile Include="Repositories\IFindAllRepository.cs" />
     <Compile Include="Repositories\IFindByIdRepository.cs" />
+    <Compile Include="Repositories\IGuestRepository.cs" />
     <Compile Include="Repositories\IPriceMomentRepository.cs" />
     <Compile Include="Repositories\IRoomRepository.cs" />
     <Compile Include="Repositories\IUpdateRepository.cs" />

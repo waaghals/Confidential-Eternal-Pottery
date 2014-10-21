@@ -62,7 +62,7 @@
                     @Html.DisplayFor(modelItem => item.BackAccount)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.BookingId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Guests", "GuestsForBooking", new { id = item.BookingId }, new { @class = "btn btn-default" })
                 </td>
             </tr>
         }

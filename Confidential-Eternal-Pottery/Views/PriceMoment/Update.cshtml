@@ -5,46 +5,38 @@
 }
 
 <h2>Update</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Update", "PriceMoment", new { roomId = Model.Room.RoomId }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>PriceMoment</legend>
-        @Html.HiddenFor(model => model.RoomId)
-        @Html.HiddenFor(model => model.Room.MinimumPrice)
-        @Html.HiddenFor(model => model.Room.Capacity)
-        @Html.HiddenFor(model => model.Room.Number)
-        @Html.HiddenFor(model => model.Room.MinimumPrice)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Price)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Price)
+    @Html.HiddenFor(m => m.Room.MinimumPrice)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Price, new { type = "number", step = "any", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Price)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.From)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.From)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.From, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <input type="date" name="@Html.NameFor(m => m.From)" value="@string.Format("{0:yyyy-MM-dd}", Model.From)" class="form-control" />
             @Html.ValidationMessageFor(model => model.From)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.To)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.To)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.To, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <input type="date" name="@Html.NameFor(m => m.To)" value="@string.Format("{0:yyyy-MM-dd}", Model.To)" class="form-control" />
+            @Html.TextBoxFor(model => model.To, new { type = "date", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.To)
         </div>
-
-        <p>
-            <input type="submit" value="Update" />
-        </p>
-    </fieldset>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="col-sm-3 pull-right btn btn-default">Save customer price period</button>
+    </div>
 }
 
 <div>

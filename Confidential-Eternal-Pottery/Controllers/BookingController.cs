@@ -124,7 +124,6 @@ namespace ConfidentialEternalPottery.Controllers
             IBookingRepository bookingRepo = new BookingRepository(db);
             bookingRepo.Create(realBooking);
 
-            db.Entry<Address>(realBooking.BillingAddress).State = EntityState.Added;
             db.SaveChanges();
 
             return View(realBooking);

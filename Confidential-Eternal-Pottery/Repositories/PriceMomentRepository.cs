@@ -36,9 +36,9 @@ namespace ConfidentialEternalPottery.Repositories
 
         PriceMoment IUpdateRepository<PriceMoment>.Update(PriceMoment entity)
         {
+            context.PriceMoments.Attach(entity);
             context.Entry<PriceMoment>(entity).State = EntityState.Modified;
             context.SaveChanges();
-
             return entity;
         }
 

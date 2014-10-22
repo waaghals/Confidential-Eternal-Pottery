@@ -1,0 +1,82 @@
+﻿@model List<ConfidentialEternalPottery.DomainModel.Models.Room>
+@{
+    ViewBag.Title = "Our rooms";
+}
+<h3>Book one of our following rooms:</h3>
+@{
+
+    foreach (ConfidentialEternalPottery.DomainModel.Models.Room room in Model)
+    {
+        switch (room.Capacity)
+        {
+            case 2:
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Double room <small>Room @room.Number</small></h2>
+                        <p>A nice weekend away for just the two of you? Check out our nice spacious double rooms!</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h1><i class="fa fa-eur"></i>@room.Price <small>Per night</small></h1>
+                            </div>
+                            <div class="col-sm-8 text-right">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    @Html.ActionLink("Edit room " + room.Number, "Update", "Room", new { roomId = room.RoomId }, new { @class = "btn btn-info" })
+                                }
+                                @Html.ActionLink("Book room " + room.Number, "SetDate", "Booking", new { id = room.RoomId }, new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                break;
+            case 3:
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Triple room <small>Room @room.Number</small></h2>
+                    <p>A nice room for three people.</p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h1><i class="fa fa-eur"></i>@room.Price <small>Per night</small></h1>
+                        </div>
+                        <div class="col-sm-8 text-right">
+                            @if (Request.IsAuthenticated)
+                            {
+                                @Html.ActionLink("Edit room " + room.Number, "Update", "Room", new { roomId = room.RoomId }, new { @class = "btn btn-info" })
+                            }
+                            @Html.ActionLink("Book room " + room.Number, "SetDate", "Booking", new { id = room.RoomId }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            break;
+
+            case 5:
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Family room <small>Room @room.Number</small></h2>
+                    <p>Planning a holiday for the whole family? This rooms sleeps 2 adults and 3 children.</p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h1><i class="fa fa-eur"></i>@room.Price <small>Per night</small></h1>
+                        </div>
+                        <div class="col-sm-8 text-right">
+                            @if (Request.IsAuthenticated)
+                            {
+                                @Html.ActionLink("Edit room " + room.Number, "Update", "Room", new { roomId = room.RoomId }, new { @class = "btn btn-info" })
+                            }
+                            @Html.ActionLink("Book room " + room.Number, "SetDate", "Booking", new { id = room.RoomId }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            break;
+        }
+
+    }
+}

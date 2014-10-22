@@ -1,0 +1,22 @@
+﻿@model ConfidentialEternalPottery.DomainModel.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <h2 class="form-signin-heading">Please sign in</h2>
+    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Username" })
+    @Html.ValidationMessageFor(m => m.UserName)
+
+    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+    @Html.ValidationMessageFor(m => m.Password)
+
+    @Html.CheckBoxFor(m => m.RememberMe)
+    @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+}

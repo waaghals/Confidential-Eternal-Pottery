@@ -1,0 +1,23 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <li>
+        @Html.ActionLink("Manage account", "Manage", "Account")
+    </li>
+    <li>
+        @Html.ActionLink("Manage rooms", "Index", "Room")
+    </li>
+    <li>
+        @Html.ActionLink("Bookings", "Overview", "Booking")
+    </li>
+    <li>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    </li>
+}
+else
+{
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}

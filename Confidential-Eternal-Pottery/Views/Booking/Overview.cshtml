@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ConfidentialEternalPottery.DomainModel.Models.Booking>
+
+@{
+    ViewBag.Title = "Booking overview";
+}
+
+<h2>@ViewBag.Title</h2>
+<input type="date" id="startDate" />
+<input type="date" id="endDate" />
+
+<table class="table table-hover" id="bookings">
+    <thead>
+        <tr>
+            <th>
+                <i class="fa fa-home"></i>
+                @Html.DisplayNameFor(model => model.RoomId)
+            </th>
+            <th>
+                <i class="fa fa-calendar"></i>
+                @Html.DisplayNameFor(model => model.From)
+            </th>
+            <th>
+                <i class="fa fa-calendar"></i>
+                @Html.DisplayNameFor(model => model.To)
+            </th>
+            <th>
+                <i class="fa fa-envelope"></i>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                <i class="fa fa-eur"></i>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                <i class="fa fa-credit-card"></i>
+                @Html.DisplayNameFor(model => model.BackAccount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.From)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.To)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <i class="fa fa-eur"></i>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BackAccount)
+                </td>
+                <td>
+                    @Html.ActionLink("Guests", "GuestsForBooking", new { id = item.BookingId }, new { @class = "btn btn-default" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script type="text/javascript">
+
+        $.fn.dataTableExt.afnFiltering.push(
+    function (oSettings, aData, iDataIndex) {
+        var start = $("#startDate").val();
+        var end = $("#endDate").val();
+        var startIndex = 1;
+        var endIndex = 2;
+
+        start = start.substring(0, 4) + start.substring(5, 7) + start.substring(8, 10);
+        end = end.substring(0, 4) + end.substring(5, 7) + end.substring(8, 10);
+
+        var colStart = aData[startIndex].substring(6, 10) + aData[startIndex].substring(3, 5) + aData[startIndex].substring(0, 2);
+        var colEnd = aData[endIndex].substring(6, 10) + aData[endIndex].substring(3, 5) + aData[endIndex].substring(0, 2);
+
+        if (start === "" && end === "") {
+            return true;
+        }
+        else if (start <= colStart && end === "") {
+            return true;
+        }
+        else if (end >= colEnd && start === "") {
+            return true;
+        }
+        else if (start <= colStart && end >= colEnd) {
+            return true;
+        }
+        return false;
+    }
+);
+
+        $(document).ready(function () {
+            var table = $('#bookings').DataTable();
+
+            // Add event listeners to the two range filtering inputs
+            $("#startDate").change(function () { table.draw(); });
+            $("#endDate").change(function () { table.draw(); });
+        });
+    </script>
+}

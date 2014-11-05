@@ -76,6 +76,7 @@ namespace ConfidentialEternalPottery.Controllers
                 correctPrice += customPrice;
             }
             booking.Price = correctPrice;
+            booking.Room.Prices = priceMoments;
             Session["CurrentGuest"] = 0;
             Session["booking"] = booking;
             return View(new GuestModel());
@@ -104,7 +105,8 @@ namespace ConfidentialEternalPottery.Controllers
             CreateBooking booking = (CreateBooking)Session["booking"];
             IRoomRepository repo = new RoomRepository(db);
             Room room = repo.FindById(booking.Room.RoomId);
-            booking.Room = room;
+            booking.Room.Capacity = room.Capacity;
+            Session["booking"] = booking;
             return View(booking);
         }
 
@@ -114,11 +116,10 @@ namespace ConfidentialEternalPottery.Controllers
         {
             CreateBooking booking = (CreateBooking)Session["booking"];
             booking.BankAccount = entity.BankAccount;
-            entity = booking; //Fix validation. hack
             Booking realBooking = booking.getBooking();
 
             //Set the room from the room id
-            IRoomRepository repo = new RoomRepository(db);
+                IRoomRepository repo = new RoomRepository(db);
             Room room = repo.FindById(booking.Room.RoomId);
             realBooking.Room = room;
 

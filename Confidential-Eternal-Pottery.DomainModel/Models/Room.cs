@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -23,7 +24,8 @@ namespace ConfidentialEternalPottery.DomainModel.Models
         [Display(Name = "Room number")]
         public int Number { get; set; }
         [Required]
-        [Display(Name = "Minimal price")]        public decimal MinimumPrice { get; set; }
+        [Display(Name = "Minimal price")]
+        public decimal MinimumPrice { get; set; }
         public virtual ICollection<PriceMoment> Prices { get; set; }
 
         public decimal Price { get { return CurrentPrice(); } }
@@ -35,8 +37,14 @@ namespace ConfidentialEternalPottery.DomainModel.Models
 
         public decimal PriceOnDate(DateTime date)
         {
+            foreach (var price in Prices)
+            {
+                Debug.WriteLine(price.From.ToString() + " - " + price.To.ToString());
+                Debug.WriteLine((price.From - date).TotalDays);
+                Debug.WriteLine((price.To - date).TotalDays);
+            }
             // Find all pricemoments where their timewindow is around date.
-            IEnumerable<PriceMoment> inRange = Prices.Where(m => (m.From - date).TotalDays < 1 && (m.To - date).TotalDays > 1);
+            IEnumerable<PriceMoment> inRange = Prices.Where(m => (m.From - date).TotalDays < 0 && (m.To - date).TotalDays > 0);
 
             // When no time windows around date where found return the minimum price
             if (!inRange.Any())
@@ -47,6 +55,16 @@ namespace ConfidentialEternalPottery.DomainModel.Models
             // Find the window with the latest end date
             PriceMoment latest = inRange.OrderByDescending(m => m.To).First();
             return latest.Price;
+        }
+
+        public decimal GetPriceForRange(DateTime start, DateTime end)
+        {
+            decimal total = 0;
+            for (DateTime date = start; date.Date <= end.Date; date = date.AddDays(1))
+            {
+                total += PriceOnDate(date);
+            }
+            return total;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

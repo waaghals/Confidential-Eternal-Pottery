@@ -88,6 +88,7 @@ namespace ConfidentialEternalPottery.Controllers
         {
             CreateBooking booking = (CreateBooking)Session["booking"];
             booking.Guests.Add(guest);
+            booking.Price = booking.CalcPrice();
             Session["booking"] = booking;
 
             if (((int)Session["CurrentGuest"] + 1) >= booking.NumGuest)

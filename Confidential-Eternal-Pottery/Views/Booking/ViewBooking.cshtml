@@ -21,15 +21,15 @@
     @Html.HiddenFor(model => model.Address.Street)
     @Html.HiddenFor(model => model.Address.Zip)
     @Html.HiddenFor(model => model.Email)
-  
-        for(int i=0; i < Model.Guests.Count; i++)
-        {
-            @Html.HiddenFor(model => model.Guests.ElementAt(i).Dob)
-            @Html.HiddenFor(model => model.Guests.ElementAt(i).FirstName)
-            @Html.HiddenFor(model => model.Guests.ElementAt(i).LastName)
-            @Html.HiddenFor(model => model.Guests.ElementAt(i).Gender)
-        }
-    
+
+    for (int i = 0; i < Model.Guests.Count; i++)
+    {
+        @Html.HiddenFor(model => model.Guests.ElementAt(i).Dob)
+        @Html.HiddenFor(model => model.Guests.ElementAt(i).FirstName)
+        @Html.HiddenFor(model => model.Guests.ElementAt(i).LastName)
+        @Html.HiddenFor(model => model.Guests.ElementAt(i).Gender)
+    }
+
     <div class="row">
         <div class="col-sm-6">
             <fieldset>
@@ -42,14 +42,13 @@
                     Price per night
                 </div>
                 <div class="col-sm-9">
-                    <i class="fa fa-eur"></i> @Html.DisplayFor(model => model.Price)
+                    <i class="fa fa-eur"></i> @Html.DisplayFor(model => model.Room.Price)
                 </div>
                 <div class="col-sm-3">
                     Total price
                 </div>
                 <div class="col-sm-9">
-                    @{ decimal totalPrice = Model.Price * days; }
-                    <i class="fa fa-eur"></i> @totalPrice
+                    <i class="fa fa-eur"></i> @Model.Price
                 </div>
                 <div class="col-sm-3">
                     @Html.DisplayNameFor(model => model.Room.Number)

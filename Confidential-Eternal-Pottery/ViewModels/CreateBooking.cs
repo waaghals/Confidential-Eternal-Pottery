@@ -43,7 +43,7 @@ namespace ConfidentialEternalPottery.ViewModels
             booking.From = From;
             booking.To = To;
             booking.Room = Room;
-            booking.Price = Room.CurrentPrice();
+            booking.Price = Room.GetPriceForRange(From, To);
             booking.BackAccount = BankAccount;
             
             foreach(GuestModel guest in Guests)
@@ -52,6 +52,11 @@ namespace ConfidentialEternalPottery.ViewModels
             }
 
             return booking;
+        }
+
+        internal decimal CalcPrice()
+        {
+            return Room.GetPriceForRange(From, To);
         }
     }
 }

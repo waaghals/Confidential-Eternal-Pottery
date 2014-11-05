@@ -29,7 +29,7 @@
     <div class="form-group">
         <label for="LastName" class="col-sm-2 control-label">Birthday</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(model => model.Dob, new { @class = "form-control", type= "date" })
+            <input type="date" name="@Html.NameFor(m => m.Dob)" value="@string.Format("{0:yyyy-MM-dd}", Model.Dob)" class="form-control" />
             @Html.ValidationMessageFor(model => model.Dob)
         </div>
     </div>

@@ -29,11 +29,16 @@ namespace ConfidentialEternalPottery.DomainModel.Models
         public decimal Price { get { return CurrentPrice(); } }
         public decimal CurrentPrice()
         {
-            // Find all pricemoments where their timewindow is around now.
-            DateTime now = DateTime.Now;
-            IEnumerable<PriceMoment> inRange = Prices.Where(m => m.From < now && m.To > now);
+            // Find all pricemoments where their timewindow is around date.
+            return PriceOnDate(DateTime.Now);
+        }
 
-            // When no time windows around now where found return the minimum price
+        public decimal PriceOnDate(DateTime date)
+        {
+            // Find all pricemoments where their timewindow is around date.
+            IEnumerable<PriceMoment> inRange = Prices.Where(m => (m.From - date).TotalDays < 1 && (m.To - date).TotalDays > 1);
+
+            // When no time windows around date where found return the minimum price
             if (!inRange.Any())
             {
                 return MinimumPrice;

@@ -21,7 +21,7 @@ namespace ConfidentialEternalPottery.Repositories
 
         Guest IUpdateRepository<Guest>.Update(Guest entity)
         {
-            context.Guest.Attach(entity);
+            context.Guests.Attach(entity);
             context.Entry<Guest>(entity).State = EntityState.Modified;
             context.SaveChanges();
 
@@ -29,7 +29,7 @@ namespace ConfidentialEternalPottery.Repositories
         }
         Guest IFindByIdRepository<Guest>.FindById(int id)
         {
-            return context.Guest.Find(id);
+            return context.Guests.Find(id);
         }
     }
 }

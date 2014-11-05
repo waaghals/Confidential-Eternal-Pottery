@@ -95,6 +95,7 @@ namespace ConfidentialEternalPottery.Controllers
             }
             Session["CurrentGuest"] = (int)Session["CurrentGuest"] + 1;
 
+            ModelState.Clear();
             return View(new GuestModel());
         }
 
